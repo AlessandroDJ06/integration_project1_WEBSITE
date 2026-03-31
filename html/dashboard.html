@@ -11,7 +11,7 @@
         <header class="top-nav">
             <nav aria-label="Dashboard navigatie">
                 <a href="../index.html" class="btn-moves">⬅ Back to Team</a>
-                <a href="/game.json" class="btn-moves" target="_blank">View Raw JSON ➡</a>
+                <a href="../game.json" class="btn-moves" target="_blank">View Raw JSON ➡</a>
             </nav>
             <h1>Live Player Moves</h1>
         </header>
@@ -39,12 +39,12 @@
     </main>
 
     <script>
-                function formatTime(timeStr) {
+    function formatTime(timeStr) {
             if (!timeStr) return '';
             return timeStr.substring(11, 19);
         }
 
-        fetch('/game.json')
+        fetch('../game.json')
             .then(res => res.json())
             .then(data => {
                 let output = '';
