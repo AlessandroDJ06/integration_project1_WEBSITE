@@ -1,3 +1,16 @@
+/* 1. HET EXACTE GAME PALET */
+:root {
+  --color-gold: #f6cd26;         /* Highlights / Tekst / Buitenste rand */
+  --color-bronze: #ac6b26;       /* Mid-tone / Binnenste schaduw rand */
+  --color-brown-primary: #563226; /* Achtergrond van de figure cards */
+  --color-brown-deep: #331c17;   /* Basis van het bord / Donkerste bruin */
+  --color-terra: #bb7f57;        /* Secundaire accenten */
+  --color-taupe: #725956;        /* Gedempte bruintinten */
+  --color-black-soft: #393939;   /* UI achtergrond */
+  --color-black-deep: #202020;   /* Pagina achtergrond */
+}
+
+/* 2. BASIS STYLING */
 @font-face {
     font-family: 'PressStart2P';
     src: url('../fonts/press_start_2p.ttf') format('truetype');
@@ -9,11 +22,108 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(0, 0, 0);
+    background-color: var(--color-black-deep);
     font-family: "PressStart2P", cursive;
-    color: aqua;
+    color: var(--color-gold);
     margin: 0;
     padding: 20px;
+    image-rendering: pixelated; /* Behoudt scherpe pixels op alle schermen */
+}
+
+/* 3. DE 'BOARD' CONTAINER (Gabaseerd op board.png) */
+.images {
+    display: grid;
+    grid-template-areas: 
+        "title title title"
+        "alessandro illia lasha";
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; 
+    max-width: 1000px;
+    margin-top: 50px;
+    padding: 35px;
+    
+    background-color: var(--color-brown-deep);
+    /* De kenmerkende dubbele rand: goud buiten, brons binnen */
+    border: 4px solid var(--color-bronze);
+    outline: 4px solid var(--color-gold);
+    outline-offset: -8px; /* Zorgt dat de goud-lijn strak langs de brons-lijn loopt */
+    
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.images h2 {
+    grid-area: title;
+    text-align: center;
+    font-size: 18px;
+    color: var(--color-gold);
+    text-shadow: 3px 3px 0px var(--color-brown-deep);
+    margin-bottom: 25px;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background: var(--color-black-deep); 
+    padding: 15px; 
+    border: 4px solid var(--color-terra);
+    position: relative; 
+    transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+figure:hover {
+    transform: translateY(-5px);
+    background-color: var(--color-bronze);
+    border-color: var(--color-gold);
+    box-shadow: 0 8px 0px var(--color-brown-deep);
+}
+
+figure img {
+    width: 150px;  
+    height: 150px;     
+    object-fit: cover;
+    border: 4px solid var(--color-gold);
+    background-color: var(--color-black-deep);
+    margin-bottom: 15px; 
+    image-rendering: pixelated;
+}
+
+figcaption {
+    font-size: 9px; 
+    line-height: 1.5;
+    text-align: center;
+    color: var(--color-gold);
+    text-shadow: 1px 1px 0px var(--color-brown-deep);
+}
+
+.btn-moves {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: var(--color-brown-deep);
+    color: var(--color-gold);
+    text-decoration: none;
+    border: 4px solid var(--color-gold);
+    box-shadow: inset -4px -4px 0px var(--color-bronze), 5px 5px 0px rgba(0,0,0,0.3);
+    
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.btn-moves:hover {
+    background-color: var(--color-bronze);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: inset -4px -4px 0px var(--color-gold), 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.btn-moves:active {
+    transform: translate(2px, 2px);
+    box-shadow: inset 4px 4px 0px var(--color-black-deep);
 }
 
 .hidden-title {
@@ -24,64 +134,12 @@ body {
     overflow: hidden;
 }
 
-.images {
-    display: grid;
-    grid-template-areas: 
-        "title title title"
-        "alessandro illia lasha";
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px; 
-    max-width: 1000px;
-    margin-top: 50px;
-    padding: 20px; 
-}
-
-.images h2 {
-    grid-area: title;
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    background: rgba(145, 138, 138, 0.2); 
-    padding: 15px; 
-    border-radius: 8px;
-    height: 100%;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    position: relative; 
-    z-index: 1;
-}
-
-
-figure:hover {
-    transform: scale(1.05); 
-    background-color: rgba(145, 138, 138, 0.5); 
-    z-index: 10;
-    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); 
-}
-
-figure img {
-    width: 150px;  
-    height: 150px;     
-    object-fit: cover;
-    object-position: top; 
-    display: block;
-    border-radius: 4px;
-    border: 4px solid aqua;
-    margin-bottom: 15px; 
-}
-
-figcaption {
-    font-size: 10px; 
-    line-height: 1.4;
-    text-align: center;
-}
-
 #alessandro { grid-area: alessandro; }
 #illia { grid-area: illia; }
 #lasha { grid-area: lasha; }
+
+
+nav {
+    text-align: center;
+    margin: 40px 0 20px 0;
+}

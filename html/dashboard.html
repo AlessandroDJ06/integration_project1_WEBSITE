@@ -4,59 +4,42 @@
     <meta charset="utf-8">
     <title>Game Data Dashboard</title>
     <link rel="stylesheet" href="../css/general.css">
-    <style>
-        body { background-color: #000000; color: #ffffff; margin: 0; padding: 20px; }
-        .dashboard-container { max-width: 95%; margin: 0 auto; background: #111111; padding: 30px; border-radius: 10px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,255,255,0.1); }
-        .top-nav { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #333; }
-        .nav-btn { 
-            display: inline-block; 
-            padding: 10px 18px; 
-            margin: 0 10px; 
-            background-color: #1a1a1a; 
-            color: #00FFFF; 
-            text-decoration: none; 
-            border: 2px solid #00FFFF; 
-            border-radius: 5px; 
-            font-size: 14px; 
-            transition: 0.3s; 
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        .nav-btn:hover { background-color: #00FFFF; color: #000000; }
-        h1 { text-align: center; color: #00FFFF; margin-top: 0; text-transform: uppercase; text-shadow: 0 0 5px rgba(0,255,255,0.5); letter-spacing: 2px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px 10px; text-align: center; border-bottom: 1px solid #333; font-size: 14px; }
-        th { background-color: #1a1a1a; color: #00FFFF; text-transform: uppercase; border-bottom: 2px solid #00FFFF; padding-bottom: 15px; }
-        tr:hover { background-color: #222222; }
-        .time-text { color: #cccccc; font-size: 1em; letter-spacing: 1px; }
-    </style>
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <div class="top-nav">
-            <a href="../index.html" class="nav-btn">⬅ Back to Team Website</a>
-            <a href="/game.json" class="nav-btn" target="_blank">View Raw JSON ➡</a>
-        </div>
-        <h1>Live Player Moves</h1>
-        <div style="overflow-x: auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Move_ID</th>
-                        <th>Move_Number</th>
-                        <th>Turn_ID</th>
-                        <th>Start_Time</th>
-                        <th>End_Time</th>
-                        <th>Start_Loc</th>
-                        <th>End_Loc</th>
-                    </tr>
-                </thead>
-                <tbody id="data-output"></tbody>
-            </table>
-        </div>
-    </div>
+    <main class="dashboard-container">
+        <header class="top-nav">
+            <nav aria-label="Dashboard navigatie">
+                <a href="../index.html" class="btn-moves">⬅ Back to Team</a>
+                <a href="/game.json" class="btn-moves" target="_blank">View Raw JSON ➡</a>
+            </nav>
+            <h1>Live Player Moves</h1>
+        </header>
+
+        <section class="data-section" aria-labelledby="table-title">
+            <h2 id="table-title" class="hidden-title">Move Data Tabel</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nr</th>
+                            <th>Turn</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Start Loc</th>
+                            <th>End Loc</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-output">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
     <script>
-        function formatTime(timeStr) {
+                function formatTime(timeStr) {
             if (!timeStr) return '';
             return timeStr.substring(11, 19);
         }
