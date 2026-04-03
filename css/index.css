@@ -1,0 +1,113 @@
+/* =========================================
+   1. HOMEPAGE FLEX LAYOUT
+   ========================================= */
+header, 
+main, 
+#hero nav,
+#features,
+.feature-card {
+    display: flex;
+}
+
+header, main, #hero nav {
+    flex-direction: column;
+    width: 100%;
+}
+
+/* =========================================
+   2. HEADER & MAIN
+   ========================================= */
+header {
+    align-items: center;
+    gap: 30px;
+}
+
+.game-title {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 4px 4px 0px var(--color-brown-primary);
+    letter-spacing: 4px;
+}
+
+main {
+    max-width: 1000px;
+    gap: 60px; 
+}
+
+/* =========================================
+   3. HERO SECTIE
+   ========================================= */
+#hero {
+    padding: 40px;
+    text-align: center;
+}
+
+#hero nav {
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+#hero h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+#hero p {
+    line-height: 1.8;
+    color: var(--color-taupe);
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   4. FEATURES
+   ========================================= */
+#features {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 30px;
+}
+
+@media (max-width: 620px) {
+    #features {
+        flex-direction: column;
+    }
+}
+
+.feature-card {
+    flex: 1; 
+    padding: 25px;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); 
+}
+
+.feature-card h3 {
+    font-size: 1rem;
+    margin-top: 0;
+    border-bottom: 2px dashed var(--color-brown-primary);
+    padding-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: var(--color-taupe);
+}
+
+.feature-card a {
+    color: var(--color-terra);
+    text-decoration: none;
+    font-size: 0.7rem;
+    margin-top: 15px;
+}
+
+.feature-card a:hover {
+    color: var(--color-gold);
+}
