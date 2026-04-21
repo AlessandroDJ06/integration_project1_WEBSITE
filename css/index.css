@@ -1,5 +1,5 @@
 /* =========================================
-   1. HOMEPAGE FLEX LAYOUT
+              MAAK ALLES FLEX 
    ========================================= */
 header, 
 main, 
@@ -15,7 +15,7 @@ header, main, #hero nav {
 }
 
 /* =========================================
-   2. HEADER & MAIN
+        SPECIFIEKE LAYOUT HEADER EN MAIN
    ========================================= */
 header {
     align-items: center;
@@ -35,7 +35,7 @@ main {
 }
 
 /* =========================================
-   3. HERO SECTIE
+                HERO SECTIE
    ========================================= */
 #hero {
     padding: 40px;
@@ -62,7 +62,7 @@ main {
 }
 
 /* =========================================
-   4. FEATURES
+                 FEATURES
    ========================================= */
 #features {
     justify-content: space-between;
@@ -72,7 +72,7 @@ main {
 
 @media (max-width: 620px) {
     #features {
-        flex-direction: column;
+        flex-direction: column; /* kon niet anders bedenken , suggesties welkom */
     }
 }
 

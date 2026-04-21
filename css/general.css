@@ -101,6 +101,8 @@ nav {
     z-index: 100;
 }
 
+
+
 #menu ul {
     list-style-type: none;
     box-sizing: border-box;
@@ -146,9 +148,12 @@ nav {
     flex-direction: column; 
 }
 
-footer {
+#menu,footer{
     width: 100%;
     max-width: 80vw;
+}
+
+footer {
     text-align: center;
     padding: 20px;
     font-size: 0.6rem;
