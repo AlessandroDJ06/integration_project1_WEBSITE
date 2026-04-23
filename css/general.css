@@ -25,9 +25,17 @@
 /* =========================================
                 BASIS STYLING 
    ========================================= */
-body, 
+body,main,header,
 #menu .submenu:hover ul {
     display: flex;
+}
+
+header,main {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
 }
 
 body {
@@ -54,9 +62,6 @@ body {
     overflow: hidden;
 }
 
-/* =========================================
-               HUISSTIJL (pixels ofc)
-   ========================================= */
 .pixel-box, 
 .pixel-button, 
 #menu .submenu ul {
@@ -158,4 +163,22 @@ footer {
     padding: 20px;
     font-size: 0.6rem;
     color: var(--color-taupe);
+}
+
+
+header {
+    align-items: center;
+    gap: 30px;
+}
+
+.game-title {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 4px 4px 0px var(--color-brown-primary);
+    letter-spacing: 4px;
+}
+
+main {
+    max-width: 1000px;
+    gap: 60px; 
 }

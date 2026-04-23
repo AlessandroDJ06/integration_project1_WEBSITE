@@ -1,38 +1,18 @@
 /* =========================================
               MAAK ALLES FLEX 
    ========================================= */
-header, 
-main, 
 #hero nav,
 #features,
 .feature-card {
     display: flex;
 }
 
-header, main, #hero nav {
+#hero nav {
     flex-direction: column;
     width: 100%;
 }
 
-/* =========================================
-        SPECIFIEKE LAYOUT HEADER EN MAIN
-   ========================================= */
-header {
-    align-items: center;
-    gap: 30px;
-}
 
-.game-title {
-    font-size: 3rem;
-    margin: 0;
-    text-shadow: 4px 4px 0px var(--color-brown-primary);
-    letter-spacing: 4px;
-}
-
-main {
-    max-width: 1000px;
-    gap: 60px; 
-}
 
 /* =========================================
                 HERO SECTIE
