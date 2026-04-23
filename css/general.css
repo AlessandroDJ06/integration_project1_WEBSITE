@@ -30,26 +30,33 @@ body,main,header,
     display: flex;
 }
 
-header,main {
-    flex-direction: column;
-    display: flex;
-    width: 100%;
-    align-items: center;
+header,main,body,nav #menu li a,footer {
     text-align: center;
+}
+
+#menu li,header,main,body,nav,#menu,footer{
+     width: 100%;
+}
+
+#menu li a,body,.pixel-button.primary {
+    color: var(--color-gold);
+}
+
+header,main,body {
+    flex-direction: column;
+    align-items: center;
+
 }
 
 body {
     background-color: var(--color-black-soft);
     font-family: "PressStart2P", monospace;
-    color: var(--color-gold);
     margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
     box-sizing: border-box;
     image-rendering: pixelated; 
-    
-    flex-direction: column;     
-    align-items: center;        
+         
     justify-content: flex-start; 
     gap: 50px;                   
 }
@@ -86,7 +93,7 @@ body {
     transition: transform 0.1s, background-color 0.2s;
 }
 
-.pixel-button.primary { background-color: var(--color-brown-primary); color: var(--color-gold); }
+.pixel-button.primary { background-color: var(--color-brown-primary); }
 .pixel-button.secondary { background-color: var(--color-black-soft); color: var(--color-taupe); }
 
 .pixel-button:hover {
@@ -99,8 +106,6 @@ body {
            NAVIGATIE & FOOTER
    ========================================= */
 nav {
-    text-align: center;
-    width: 100%;
     max-width: max-content; 
     padding: 0;
     z-index: 100;
@@ -120,16 +125,13 @@ nav {
 
 #menu li {
     background-color: var(--color-brown-deep);
-    width: 100%;
     box-sizing: border-box;
 }
 
 #menu li a {
     display: block;
-    text-align: center;
     padding: 1em;
     text-decoration: none;
-    color: var(--color-gold);
     font-size: 0.8rem;
 }
 
@@ -154,12 +156,10 @@ nav {
 }
 
 #menu,footer{
-    width: 100%;
     max-width: 80vw;
 }
 
 footer {
-    text-align: center;
     padding: 20px;
     font-size: 0.6rem;
     color: var(--color-taupe);

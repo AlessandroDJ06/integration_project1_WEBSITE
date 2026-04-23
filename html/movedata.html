@@ -6,6 +6,7 @@
     <title>Moves</title>
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/movestats.css">
+    <script defer src="../scripts/extractmoves.js"></script>
 </head>
 <body>
     <header>
@@ -36,15 +37,18 @@
         <article class="pixel-box">
             <h2>Move Data</h2>
             <table>
-                <thead class="pixel-box">
+                <thead >
                     <tr>
                         <th>PLAYER</th>
                         <th>GAME</th>
                         <th>OUTCOME</th>
                         <th>MOVE</th>
+                        <th>DURATION</th>
                         <th>OUTLIER</th>
                     </tr>
                 </thead>
+                <tbody id="game-data">
+                </tbody>
             </table>
         </article>
 
