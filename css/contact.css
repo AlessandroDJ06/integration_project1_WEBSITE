@@ -8,9 +8,23 @@
     margin: 1rem;
 }
 
-.naamkaart{
+.naamkaart {
     display: flex;
     flex-direction: row;
-    gap: 10rem;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    padding: 2rem;
+}
+.naamkaart section{
+    padding: 0.4rem
 }
 
+.feature-card {
+    flex: 0 1 30rem;
+}
+
+article.contact section{
+    text-align: left;
+    padding: 1rem
+}
