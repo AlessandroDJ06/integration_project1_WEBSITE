@@ -34,7 +34,7 @@ header,main,body,nav #menu li a,footer {
     text-align: center;
 }
 
-#menu li,header,main,body,nav,#menu,footer{
+#menu li,header,main,body,nav,#menu,footer,article{
      width: 100%;
 }
 
@@ -96,7 +96,7 @@ button,body{
 }
 
 .pixel-button.primary { background-color: var(--color-brown-primary); }
-.pixel-button.secondary { background-color: var(--color-black-soft); color: var(--color-taupe); }
+.pixel-button.secondary { background-color: var(--color-black-soft); }
 
 .pixel-button:hover {
     transform: translateY(-2px);
@@ -164,6 +164,9 @@ nav {
 footer {
     padding: 20px;
     font-size: 0.6rem;
+}
+
+footer,.pixel-button.secondary{
     color: var(--color-taupe);
 }
 
@@ -180,7 +183,13 @@ header {
     letter-spacing: 4px;
 }
 
-main {
-    max-width: 1000px;
+main,article {
+    max-width: 90%;
     gap: 60px; 
+}
+
+article {
+    padding: 20px 40px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }

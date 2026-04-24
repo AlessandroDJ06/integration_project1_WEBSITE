@@ -5,6 +5,7 @@ function getMoveData() {
         })
         .then(function(data) {
             const tableBody = document.getElementById('game-data');
+            tableBody.innerHTML = "";
             
             for (let i = 0; i < data.length; i++) {
                 let row = data[i];
