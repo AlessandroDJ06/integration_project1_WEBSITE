@@ -52,4 +52,6 @@ function roundDuration(duration){
 
 getMoveData();
 
+document.getElementById("moveDataBtn").addEventListener("click", getMoveData);
+
 

@@ -50,15 +50,17 @@ header,main,body {
 
 body {
     background-color: var(--color-black-soft);
-    font-family: "PressStart2P", monospace;
     margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
     box-sizing: border-box;
     image-rendering: pixelated; 
-         
     justify-content: flex-start; 
     gap: 50px;                   
+}
+
+button,body{
+    font-family: "PressStart2P", monospace;
 }
 
 .hidden-title {

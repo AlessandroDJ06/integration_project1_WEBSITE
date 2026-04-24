@@ -48,3 +48,8 @@ tbody tr:hover td, th{
         font-size: 0.4rem;
     }
 }
+
+button{
+    font-size: 0.1rem;
+    margin-bottom: 15px;
+}
