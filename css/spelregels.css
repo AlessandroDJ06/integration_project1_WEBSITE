@@ -1,0 +1,14 @@
+h2{
+    line-height: 3;
+}
+
+h4{
+    color: var(--color-gold);
+}
+
+article p{
+    line-height: 1.8;
+    color: var(--color-taupe);
+    margin-bottom: 30px;
+}
+
