@@ -1,0 +1,16 @@
+.circle-img {
+    width: 20vw;
+    max-width: 200px;
+    min-width: 80px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+}
+
+.naamkaart{
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+}
+
