@@ -37,7 +37,6 @@
 
 #hero p {
     line-height: 1.8;
-    color: var(--color-taupe);
     margin-bottom: 30px;
 }
 
@@ -78,7 +77,7 @@
 .feature-card p {
     font-size: 0.7rem;
     line-height: 1.6;
-    color: var(--color-taupe);
+
 }
 
 .feature-card a {
@@ -90,4 +89,8 @@
 
 .feature-card a:hover {
     color: var(--color-gold);
+}
+
+#hero p,.feature-card p{
+    color: var(--color-taupe);
 }
