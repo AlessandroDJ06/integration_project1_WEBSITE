@@ -1,0 +1,25 @@
+p{
+    color: var(--color-taupe);
+}
+
+.installatie-vereisten{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+}
+
+.vereisten{
+    text-align: left;
+    padding: 10px;
+}
+
+@media (max-width: 900px) {
+    .installatie-vereisten{
+        flex-direction: column;
+    }
+}
+
+section{
+    padding: 15px;
+}
