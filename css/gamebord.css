@@ -1,0 +1,16 @@
+.flex-container > article.pixel-box {
+    flex: 1 40%;
+}
+
+.flex-container{
+    gap: 30px;
+}
+
+img{
+    max-width: 60%;
+    width: 60%;
+}
+
+figcaption{
+    padding-bottom: 2%;
+}

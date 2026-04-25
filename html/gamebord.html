@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamebord</title>
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/gamebord.css">
+</head>
+<body>
+        <header>
+        <h1 class="game-title">ZAROC</h1>
+
+        <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+            <h2 class="hidden-title">navigatie</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="/index.html"> Home</a>
+                    <ul>
+                        <li><a href="/html/spelregels.html">Spelregels</a></li>
+                        <li><a href="#overons">Over ons</a></li>
+                        <li><a href="#stijl">Stijl</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">Informatie
+                    <ul>
+                        <li><a href="/html/movedata.html">Stats</a></li>
+                        <li><a href="/html/aispeler.html">Ai speler</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/html/fotogalerij.html">foto gallerij</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="pixel-box">
+            <h2>Het bord</h2>
+            <p>Zaroc is een 3d bordspel, om dit te tonen in een 2d formaat hebben we 2 technieken gebruikt om je
+                toch de belangrijke inzichten te tonen die je bij de 3d versie altijd wel kan zien.
+            </p>
+        </article>
+
+        <section class="flex-container">
+            <h2 class="hidden-title">welke technieken</h2>
+                <article class="pixel-box">
+                    <h3>1. kleine shift bij de pawns</h3>
+                    <p>Om het bord zelf er beter uit te laten zien en je een beetje het 3d gevoel te geven hebben we 
+                        ervoor gekozen om een kleine offset te berekenen met speelstuk op het paaltje. Dit heeft je de indruk dat
+                        de stukken echt gestapeld worden.
+                    </p>
+                </article>
+
+                <article class="pixel-box">
+                    <h3>2. side view</h3>
+                    <p>Omdat de offset soms onduidelijk is over welke stukken zich waar bevinden op de paaltjes , hebben we ook een 
+                        sideview gemaakt rechts naast het bord, dit toont enkel de bovenste 3 rijen aangezien de finish maar 1 speelstuk mag bevatten per paaltje.
+                        op deze manier kan je toch zoals het echte spel vooruit plannen!
+                    </p>
+                </article>
+        </section>
+
+        <aside class="pixel-box">
+            <h2>Hoe ziet het bord eruit?</h2>
+
+            <figure>
+                <figcaption>
+                    <p>Om je een idee te geven hoe het bord eruit ziet, zie je hier een foto van het default thema.
+                    Wil je graag de andere themas ook zien? navigeer dan naar de foto galerij!
+                    </p>
+                    <a class="pixel-button primary">Foto galerij</a>
+                </figcaption>
+                <img src="/images/default-theme/gameboard.png" alt="foto bord">
+            </figure>
+        </aside>
+    </main>
+
+    
+    <footer class="pixel-box">
+        <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+    </footer>
+    
+</body>
+</html>
