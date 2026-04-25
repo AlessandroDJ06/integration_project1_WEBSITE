@@ -72,3 +72,7 @@
 #hero p,.feature-card p{
     color: var(--color-taupe);
 }
+
+#features > section.pixel-box {
+    flex: 1 1 200px;
+}
