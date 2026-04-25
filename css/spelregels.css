@@ -7,8 +7,6 @@ h4{
 }
 
 article p{
-    line-height: 1.8;
     color: var(--color-taupe);
     margin-bottom: 30px;
 }
-

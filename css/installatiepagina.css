@@ -1,10 +1,4 @@
-p{
-    color: var(--color-taupe);
-}
-
 .installatie-vereisten{
-    display: flex;
-    flex-direction: row;
     gap: 50px;
     justify-content: center;
 }
@@ -18,8 +12,4 @@ p{
     .installatie-vereisten{
         flex-direction: column;
     }
-}
-
-section{
-    padding: 15px;
 }

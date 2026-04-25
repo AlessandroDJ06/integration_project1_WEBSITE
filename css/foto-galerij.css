@@ -3,10 +3,12 @@
 }
 
 .themas{
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     gap: 25px;
+}
+
+.themas > section.pixel-box {
+    flex: 1 1 200px;
 }
 
 
@@ -26,17 +28,8 @@
 
 
 
-@media (max-width: 970px) {
-    .themas{
-        flex-direction: column;
-    }
-}
-
 @media (max-width: 1200px) {
    .foto-galerij-grid{
         grid-template-columns: 1fr;
     }
 }
-
-
- 

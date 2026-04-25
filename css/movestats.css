@@ -11,13 +11,15 @@ thead tr {
 
 th {
     padding: 12px 16px;
-    text-align: center;
     font-size: 0.6rem;
+}
+
+th,td{
+    text-align: center;
 }
 
 td {
     padding: 10px 16px;
-    text-align: center;
     font-size: 0.5rem;
     color: var(--color-terra);
 }
