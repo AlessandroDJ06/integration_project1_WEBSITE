@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resourcemanager</title>
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/resourcemanager.css">
+</head>
+<body>
+        <header>
+        <h1 class="game-title">ZAROC</h1>
+
+        <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+            <h2 class="hidden-title">navigatie</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="/index.html"> Home</a>
+                    <ul>
+                        <li><a href="/html/spelregels.html">Spelregels</a></li>
+                        <li><a href="#overons">Over ons</a></li>
+                        <li><a href="#stijl">Stijl</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">Informatie
+                    <ul>
+                        <li><a href="/html/movedata.html">Stats</a></li>
+                        <li><a href="/html/aispeler.html">Ai speler</a></li>
+                        <li><a href="/html/gamebord.html">Spel bord</a></li>
+                        <li><a href="/html/resourcemanager.html">Resourcemanager</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/html/fotogalerij.html">foto galerij</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="pixel-box">
+            <h2>Resourcemanager</h2>
+            <p>aangezien ons hele spel vertrouwt op de pixel art tekeningen moet er natuurlijk een systeem zijn 
+                dat ervoor zorgt dat alle images goed geladen kunnen worden en natuurlijk ook dat ze niet onnodig ingeladen blijven.
+                Hiervoor hebben wij een resourcemanager ontwikkelt! 
+            </p>
+        </article>
+
+        <section class="flex-container">
+            <h2 class="hidden-title">info over resourcemanager</h2>
+            <article class="pixel-box">
+                <h3>Hoe werkt het?</h3>
+                <p>De resourcemanager bevat een aantal hashmaps , in deze hashmaps slaagt hij onderandere ingeladen
+                    fotos op , of bv een font maar ook de profiel fotos ,... . de reden dat we hashmaps gebruiken is voor cashing.
+                    cashing zorgt er eigenlijk voor dat als je een foto meerdere keren zou gebruiken deze maar 1 keer ingeladen wordt.
+                    op deze manier kunnen we onze game dus vlot houden en toch deze unieke stijl hanteren!
+                </p>
+            </article>
+
+            <article class="pixel-box">
+                <h3>Voordelen?</h3>
+                <p>
+                    1 van de voordelen is dus dat het spel vlot kan blijven, maar nog een ander voordeel zijn onze themas!
+                    door gebruik te maken van een resourcemanager kan je heel simpel van thema veranderen zonder in je code complexe
+                    dingen toe te voegen! De resourcemanager krijgt bij het aanmaken standaard het default thema mee, en dit kan je dan in 
+                    de instellingen aanpassen. Wanneer je dit doet veranderd het thema meteen!
+                </p>
+            </article>
+
+        </section>
+    </main>
+
+    
+    <footer class="pixel-box">
+        <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+    </footer>
+</body>
+    
+
+</html>
