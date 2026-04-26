@@ -25,7 +25,7 @@ header, main, nav #menu li a, footer {
     text-align: center;
 }
 
-#menu li, header, main, nav, #menu, footer, article {
+#menu li, header, main, nav, #menu, footer, article,img {
     width: 100%;
 }
 
@@ -47,7 +47,7 @@ body {
     image-rendering: pixelated;
 }
 
-header, main, footer, article {
+header, main, footer, article,p {
     margin: 0 auto;
 }
 
@@ -159,7 +159,7 @@ nav {
 }
 
 #menu, footer {
-    max-width: 80vw;
+    max-width: 90vw;
 }
 
 footer {
