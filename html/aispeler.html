@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/aispeler.css">
+    <title>ai speler</title>
+</head>
+<body>
+    <header>
+        <h1 class="game-title">ZAROC</h1>
+
+        <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+            <h2 class="hidden-title">navigatie</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="/index.html"> Home</a>
+                    <ul>
+                        <li><a href="/html/spelregels.html">Spelregels</a></li>
+                        <li><a href="#overons">Over ons</a></li>
+                        <li><a href="#stijl">Stijl</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">Informatie
+                    <ul>
+                        <li><a href="/html/movedata.html">Stats</a></li>
+                        <li><a href="/html/aispeler.html">Ai speler</a></li>
+                        <li><a href="/html/gamebord.html">Spel bord</a></li>
+                        <li><a href="/html/resourcemanager.html">Resourcemanager</a></li>
+                        <li><a href="/html/multiplayer.html">Multiplayer</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/html/fotogalerij.html">foto galerij</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="pixel-box">
+            <h2>Ai speler</h2>
+            <p>Wat is een spel zonder ai spelers die je onder tafel kunnen spelen wanneer je vrienden even geen zin hebben?
+               In zaroc hebben we hiervoor de ideale spelers! Met 4 verschillende moeilijkheidsgraden en 12 verschillende spelers biedt zaroc voor iedereen 
+               een perfecte tegenstander!
+            </p>
+        </article>
+
+        <section class="extra-info flex-container">
+            <h2 class="hidden-title">Extra info</h2>
+            <section class="pixel-box">
+                <h3>Architectuur</h3>
+                <p>Onze ai speler is gebaseerd op AlphaZero van deepMind! het voordeel van dit type model is dat je geen duizenden games aan data moet hebben om een ai speler te maken, want de ai maakt deze data zelf!</p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Hoe werkt het?</h3>
+                <p>De Ai is een combinatie van Monte Carlo Tree Search en een neuraal netwerk. Monte Carlo dient hier voor de langdurige strategie waarbij je in de evalutatie stap van mcts gebruik maakt van het neurale netwerk om de zet te beoordelen</p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Type neuraal netwerk</h3>
+                <p>Onze AI-speler maakt gebruik van een Value Network dat gebouwd
+                     is op een ResNet. Het grootste verschil met AlphaZero
+                      is dat AlphaZero een 'dual-headed' netwerk gebruikt met zowel een Value head
+                      als een Policy head om de zoekboom te sturen, terwijl ons model zich exclusief 
+                      focust op de Value head.
+                </p>
+            </section>
+        </section>
+
+        <article class="pixel-box">
+            <h2>Ontmoet de Ai spelers</h2>
+            <section class="ai-spelers flex-container">
+                <h3 class="hidden-title">foto's spelers</h3>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/alistair.png" alt="Alistair">
+                    <figcaption>
+                        <p>Alistair</p>
+                        <p>-easy-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/arthur.png" alt="Arthur">
+                    <figcaption>
+                        <p>Arthur</p>
+                        <p>-easy-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/beatrice.png" alt="Beatrice">
+                    <figcaption>
+                        <p>Beatrice</p>
+                        <p>-easy-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/clara.png" alt="Clara">
+                    <figcaption>
+                        <p>Clara</p>
+                        <p>-medium-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/eleanor.png" alt="Eleanor">
+                    <figcaption>
+                        <p>Eleanor</p>
+                        <p>-medium-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/gideon.png" alt="Gideon">
+                    <figcaption>
+                        <p>Gideon</p>
+                        <p>-medium-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/helena.png" alt="Helena">
+                    <figcaption>
+                        <p>Helena</p>
+                        <p>-hard-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/irene.png" alt="Irene">
+                    <figcaption>
+                        <p>Irene</p>
+                        <p>-hard-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/james.png" alt="James">
+                    <figcaption>
+                        <p>James</p>
+                        <p>-hard-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/leopold.png" alt="Leopold">
+                    <figcaption>
+                        <p>Leopold</p>
+                        <p>-elite-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/sebastian.png" alt="Sebastian">
+                    <figcaption>
+                        <p>Sebastian</p>
+                        <p>-elite-</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="pixel-box">
+                    <img src="/images/ai-spelers/stefan.png" alt="Stefan">
+                    <figcaption>
+                        <p>Stefan</p>
+                        <p>-elite-</p>
+                    </figcaption>
+                </figure>
+
+            </section>
+        </article>
+
+    </main>
+
+    <footer class="pixel-box">
+        <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+    </footer>
+
+</body>
+</html>

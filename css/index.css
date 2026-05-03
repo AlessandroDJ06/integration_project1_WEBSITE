@@ -1,22 +1,3 @@
-/* =========================================
-              MAAK ALLES FLEX 
-   ========================================= */
-#hero nav,
-#features,
-.feature-card {
-    display: flex;
-}
-
-#hero nav {
-    flex-direction: column;
-    width: 100%;
-}
-
-
-
-/* =========================================
-                HERO SECTIE
-   ========================================= */
 #hero {
     padding: 40px;
     text-align: center;
@@ -24,10 +5,13 @@
 
 #hero nav {
     justify-content: center;
-    flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
     margin: 0 auto;
+}
+
+#hero nav{
+    flex-direction: row;
 }
 
 #hero h2 {
@@ -36,23 +20,18 @@
 }
 
 #hero p {
-    line-height: 1.8;
-    color: var(--color-taupe);
     margin-bottom: 30px;
 }
 
-/* =========================================
-                 FEATURES
-   ========================================= */
+
 #features {
     justify-content: space-between;
-    flex-direction: row;
     gap: 30px;
 }
 
 @media (max-width: 620px) {
     #features {
-        flex-direction: column; /* kon niet anders bedenken , suggesties welkom */
+        flex-direction: column;
     }
 }
 
@@ -77,8 +56,6 @@
 
 .feature-card p {
     font-size: 0.7rem;
-    line-height: 1.6;
-    color: var(--color-taupe);
 }
 
 .feature-card a {
@@ -90,4 +67,12 @@
 
 .feature-card a:hover {
     color: var(--color-gold);
+}
+
+#hero p,.feature-card p{
+    color: var(--color-taupe);
+}
+
+#features > section.pixel-box {
+    flex: 1 1 200px;
 }

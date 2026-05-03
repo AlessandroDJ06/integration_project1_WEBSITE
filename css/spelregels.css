@@ -1,0 +1,8 @@
+h2 { line-height: 3; }
+
+h4 { color: var(--color-gold); }
+
+article p{
+    color: var(--color-taupe);
+    margin-bottom: 30px;
+}

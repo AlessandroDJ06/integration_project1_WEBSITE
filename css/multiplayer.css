@@ -1,0 +1,21 @@
+img ,aside > p{
+    max-width: 80%;
+}
+
+
+.sfeerbeelden-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 1200px) {
+   .sfeerbeelden-grid{
+        grid-template-columns: 1fr;
+    }
+}
+
+aside > p{
+    padding: 2%;
+}
