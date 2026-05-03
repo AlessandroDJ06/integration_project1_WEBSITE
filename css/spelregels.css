@@ -55,6 +55,7 @@ article > section.pixel-box:nth-child(4) > section.pixel-box {
     padding: 1.5rem;
     box-sizing: border-box;
 }
+
 article > section.pixel-box:nth-child(4) > section.pixel-box h4 {
     width: 100%;
     text-align: center;
