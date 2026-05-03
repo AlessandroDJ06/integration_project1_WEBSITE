@@ -1,0 +1,47 @@
+.circle-img {
+    width: 20vw;
+    max-width: 200px;
+    min-width: 80px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem;
+}
+
+.naamkaart {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    padding: 2rem;
+}
+.naamkaart section{
+    padding: 0.4rem
+}
+
+.feature-card {
+    flex: 0 1 30rem;
+}
+
+.job-titel{
+    color: var(--color-terra);
+}
+
+.flavour-text{
+    color: var(--color-taupe);
+}
+
+.feature-card a {
+    color: var(--color-terra);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.feature-card a:hover {
+    color: var(--color-gold);
+}
+
+
+
