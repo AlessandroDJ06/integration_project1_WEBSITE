@@ -1,39 +1,26 @@
 function getMoveData() {
     loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
-
-        let alleRijenHtml = ""; 
+        
+        let rows = []; 
         
         for (let i = 0; i < data.length; i++) {
             let row = data[i];
-            let tr = '';
+            let rowClass = row.outlier === 'X' ? " class='outlier'" : "";
 
-            if (row.outlier === 'X'){
-                tr = "<tr class='outlier'>" +
-                "<td>" + row.player + "</td>" +
-                "<td>" + formatDate(row.game) + "</td>" +
-                "<td>" + row.outcome + "</td>" +
-                "<td>" + formatDate(row.move) + "</td>" +
-                "<td>" + roundDuration(row.duration) + "</td>" +
-                "<td>" + (row.outlier || "") + "</td>" +
-                "</tr>";
-            } else {
-                tr = "<tr>" +
-                "<td>" + row.player + "</td>" +
-                "<td>" + formatDate(row.game) + "</td>" +
-                "<td>" + row.outcome + "</td>" +
-                "<td>" + formatDate(row.move) + "</td>" +
-                "<td>" + roundDuration(row.duration) + "</td>" +
-                "<td>" + (row.outlier || "") + "</td>" +
-                "</tr>";
-            }
+            let tr = `<tr${rowClass}>
+                <td>${row.player}</td>
+                <td>${formatDate(row.game)}</td>
+                <td>${row.outcome}</td>
+                <td>${formatDate(row.move)}</td>
+                <td>${roundDuration(row.duration)}</td>
+                <td>${row.outlier || ""}</td>
+            </tr>`;
 
-
-            alleRijenHtml += tr;
+            rows.push(tr);
         }
-
-
-        tableBody.innerHTML = alleRijenHtml;
+        tableBody.innerHTML = "";
+        tableBody.insertAdjacentHTML('beforeend', rows.join(''));
     });
 }
 
