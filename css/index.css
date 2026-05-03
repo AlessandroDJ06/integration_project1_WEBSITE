@@ -8,10 +8,8 @@
     gap: 20px;
     flex-wrap: wrap;
     margin: 0 auto;
-}
-
-#hero nav{
     flex-direction: row;
+
 }
 
 #hero h2 {
@@ -36,7 +34,7 @@
 }
 
 .feature-card {
-    flex: 1; 
+    flex: 1;
     padding: 25px;
     flex-direction: column;
     justify-content: space-between;
@@ -44,7 +42,7 @@
 }
 
 .feature-card:hover {
-    transform: translateY(-5px); 
+    transform: translateY(-5px);
 }
 
 .feature-card h3 {

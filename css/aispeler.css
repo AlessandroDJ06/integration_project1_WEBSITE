@@ -1,13 +1,13 @@
 .ai-spelers, .extra-info {
-    margin: 0 auto;  
+    margin: 0 auto;
 }
 
-.extra-info { 
+.extra-info {
     max-width: 1200px;
 }
 
 .extra-info > section.pixel-box {
-    flex: 1 1 300px; 
+    flex: 1 1 300px;
 }
 
 .extra-info, .ai-spelers{
@@ -15,18 +15,18 @@
 }
 
 .ai-spelers {
-    max-width: 1200px;      
-    justify-content: center; 
+    max-width: 1200px;
+    justify-content: center;
     gap: 50px;
-    align-items: stretch; 
+    align-items: stretch;
 }
 
 
 
 figure {
-    flex: 1 1 200px;   
-    max-width: 250px;  
-    margin: 0;         
+    flex: 1 1 200px;
+    max-width: 250px;
+    margin: 0;
 }
 
 section p {
