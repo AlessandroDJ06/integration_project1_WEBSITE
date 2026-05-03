@@ -212,3 +212,23 @@ section {
     padding: 15px;
     line-height: 1.6;
 }
+
+.feature-card a {
+    color: var(--color-terra);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.feature-card a:hover {
+    color: var(--color-gold);
+}
+
+.flex-column-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.centered-card{
+    justify-content: center;
+}
