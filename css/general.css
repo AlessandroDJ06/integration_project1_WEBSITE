@@ -223,3 +223,12 @@ section {
 .feature-card a:hover {
     color: var(--color-gold);
 }
+
+.flex-column-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.centered-card{
+    justify-content: center;
+}
