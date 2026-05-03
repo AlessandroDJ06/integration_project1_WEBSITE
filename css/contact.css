@@ -9,8 +9,7 @@
 }
 
 .naamkaart {
-    display: flex;
-    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 2rem;
     justify-content: center;
     align-items: stretch;
