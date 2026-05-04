@@ -1,0 +1,18 @@
+.erd-foto {
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+.erd-foto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.uitleg {
+    max-width: 90%;
+    align-items: stretch;
+}
+
+.uitleg > article.pixel-box {
+    flex: 1 1 400px;
+}

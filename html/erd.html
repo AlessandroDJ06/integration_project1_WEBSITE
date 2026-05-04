@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/erd.css">
+    <title>Database ERD</title>
+</head>
+<body>
+
+<header>
+    <h1 class="game-title">ZAROC</h1>
+
+    <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+        <h2 class="hidden-title">navigatie</h2>
+        <ul>
+            <li class="submenu">
+                <a href="/index.html">Home</a>
+                <ul>
+                    <li><a href="spelregels.html">Spelregels</a></li>
+                    <li><a href="#overons">Over ons</a></li>
+                    <li><a href="#stijl">Stijl</a></li>
+                </ul>
+            </li>
+            <li class="submenu">Informatie
+                <ul>
+                    <li><a href="movedata.html">Stats</a></li>
+                    <li><a href="aispeler.html">Ai speler</a></li>
+                    <li><a href="gamebord.html">Spel bord</a></li>
+                    <li><a href="gamemodel.html">Spel logica</a></li>
+                    <li><a href="resourcemanager.html">Resourcem²anager</a></li>
+                    <li><a href="infrastructure.html">Infrastructure</a></li>
+                    <li><a href="erd.html">Database ERD</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="fotogalerij.html">Foto galerij</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <article class="pixel-box">
+        <h2>Entity Relationship Diagram</h2>
+        <p>
+            Onze database slaat alles op wat er tijdens een game gebeurt. Zo kunnen wij statistieken bijhouden, unfinished games hervatten en multiplayer mogelijk maken. Het Entity Relationship Diagram hieronder toont hoe onze database samenhangt.
+        </p>
+    </article>
+
+    <article class="pixel-box">
+        <h2>Visueel Schema</h2>
+        <figure class="erd-foto">
+            <img src="../images/ERDv8.drawio.png" alt="Entity Relationship Diagram van de Zaroc database">
+        </figure>
+    </article>
+
+    <section class="uitleg flex-container">
+        <h2 class="hidden-title">Relaties en toelichting</h2>
+
+        <article class="pixel-box">
+            <h3>Relaties</h3>
+            <p>
+                We gebruiken de tussentabel <code>GAME_PARTICIPATION</code> om een veel-op-veel relatie tussen <code>PLAYERS</code> en <code>GAMES</code> op te lossen. Hierdoor kan één game meerdere spelers hebben, en kan één speler aan meerdere games meedoen. Daarnaast slaan we hier ook spel specifieke data op, zoals met welke kleur pion de speler speelde en of hij de winnaar was.
+            </p>
+            <p>
+                <code>TURNS</code> en <code>MOVES</code> vormen een hiërarchie. 1 game heeft veel beurten, en 1 beurt heeft maximaal twee zetten. Dit is telkens een één-op-veel relatie.
+            </p>
+            <p>
+                <code>GAME_ROOMS</code> heeft een 1 op 1 relatie met <code>GAMES</code>. 1 room hoort bij exact 1 game. De tabel verwijst via twee aparte foreign keys (<code>host_id</code> en <code>guest_id</code>) naar <code>PLAYERS</code>, zodat de twee rollen in een online game duidelijk onderscheiden zijn. Beide zijn een veel-op-één relatie met <code>PLAYERS</code>. Één speler kan meerdere keren host of gast zijn.
+            </p>
+        </article>
+
+        <article class="pixel-box">
+            <h3>Toelichting</h3>
+            <p>
+                Wachtwoorden in de <code>PLAYERS</code> tabel worden gehasht opgeslagen via BCrypt. Ze gaan nooit als plain text over het netwerk, de databaseverbinding is beveiligd met SSL dus zelfs de hashwaarde is niet leesbaar.
+            </p>
+            <p>
+                De <code>room_code</code> in <code>GAME_ROOMS</code> is een unieke varchar in plaats van een gewone integer. Zo kunnen wij spelers een korte, leesbare code geven om samen in een lobby te komen. De code wordt door de server gegenereerd als een willekeurige hexadecimale string en is gegarandeerd uniek door de UQ-constraint.
+            </p>
+            <p>
+                De kolommen <code>play_style</code> en <code>difficulty</code> staan allebei in <code>PLAYERS</code>. <code>difficulty</code> is enkel ingevuld voor AI en bepaalt hoe diep het AI-model nadenkt. <code>play_style</code> is enkel ingevuld voor menselijke spelers en wordt na een game berekend op basis van het aantal agressieve zetten. De niet ingevulde waarden zijn dus null.
+            </p>
+            <p>
+                <code>start_location</code> en <code>end_location</code> in <code>MOVES</code> worden opgeslagen als coördinaaten in het formaat <code>x,y</code>. Dit zijn de posities van de pen op het bord voor en na de zet.
+            </p>
+        </article>
+
+    </section>
+
+</main>
+
+<footer class="pixel-box">
+    <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+</footer>
+
+</body>
+</html>

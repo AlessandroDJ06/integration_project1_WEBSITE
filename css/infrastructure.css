@@ -1,0 +1,41 @@
+article > section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-brown-primary);
+}
+
+article > section:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+.infra-tabel {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.infra-tabel th,
+.infra-tabel td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-brown-primary);
+}
+
+.infra-tabel tr:last-child td {
+    border-bottom: none;
+}
+
+.backup-stappen,
+.https-stappen {
+    margin: 20px auto;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.backup-stappen > section.infra-stap,
+.https-stappen > section.infra-stap {
+    flex: 1 1 220px;
+    max-width: 300px;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/gamemodel.css">
+    <title>Game Model</title>
+</head>
+<body>
+
+    <header>
+        <h1 class="game-title">ZAROC</h1>
+
+        <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+            <h2 class="hidden-title">navigatie</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="/index.html">Home</a>
+                    <ul>
+                        <li><a href="spelregels.html">Spelregels</a></li>
+                        <li><a href="#overons">Over ons</a></li>
+                        <li><a href="#stijl">Stijl</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">Informatie
+                    <ul>
+                        <li><a href="movedata.html">Stats</a></li>
+                        <li><a href="aispeler.html">Ai speler</a></li>
+                        <li><a href="gamebord.html">Spel bord</a></li>
+                        <li><a href="gamemodel.html">Spel logica</a></li>
+                        <li><a href="resourcemanager.html">Resourcemanager</a></li>
+                        <li><a href="infrastructure.html">Infrastructure</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="fotogalerij.html">Foto galerij</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <article class="pixel-box">
+            <h2>Game Model</h2>
+            <p>
+                De game model is het brein van Zaroc. Het bevat alle spellogica, regels en methoden, volledig los van de gebruikersinterface of de database. Het model bepaalt wat een geldige zet is, wie er wint en hoe het bord en het spelverloop verandert.
+            </p>
+            <p>
+                De centrale klasse is AppController, die fungeert als brug tussen de UI (eerst via Presenter) en het model. Vanuit de controller worden spelers aangemaakt, het spel gestart en de game status beheerd. Het model zelf is opgedeeld in 6 domeinen: het bord, de spellogica, de spelinformatie, de spelerinformatie, het multiplayersysteem en de instellingen.
+            </p>
+        </article>
+
+        <section class="model-info flex-container">
+            <h2 class="hidden-title">Model Info</h2>
+
+            <section class="pixel-box">
+                <h3>Board Info</h3>
+                <p>
+                    Bevat alle klassen die het fysieke bord voorstellen. Board houdt een 4×10 array van Peg-objecten (pennen) bij. Elke Peg heeft een maximale capaciteit afhankelijk van zijn rij: rij 1 kan 4 Pawns dragen, rij 4 slechts 1.
+                </p>
+                <p>
+                    Een Pawn (pion) kent zijn kleur en de Peg waarop hij staat. De methode <code>getUpperPawn()</code> geeft altijd de bovenste en dus verplaatsbare Pawn terug. <code>boardCopy()</code> maakt een volledige diepe kopie van het bord voor gebruik door de AI.
+                </p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Game Logic</h3>
+                <p>
+                    De klasse Game beheert het volledige spelverloop. Een spel bestaat uit een lijst van Turn-objecten, en elke beurt telt maximaal twee Move-objecten.
+                </p>
+                <p>
+                    Er is een statische methode voor de geldigheid <code>Move.isLegal()</code>: een zet is geldig als een Pawn 2 posities horizontaal schuift op dezelfde rij, of 1 rij omhoog gaat zolang de startPeg volle capaciteit heeft.
+                    Terugzetten naar de vorige/meest recente positie is uitdrukkelijk verboden. Daarnaast is er ook nog de optie om jouw zet binnen de 5 seconden ongedaan te maken.
+                </p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Game Info</h3>
+                <p>
+                    GameParticipation koppelt een speler aan een spel en slaat zijn gekozen kleur op. De GameStatus geeft aan of het spel bezig is, gepauzeerd of afgelopen.
+                </p>
+                <p>
+                    PawnColor bevat alle beschikbare kleuren: wit, zwart, blauw, rood, geel en groen. De twee spelers kiezen elk een andere kleur. Het model verhindert automatisch dat beiden dezelfde kleur kiezen.
+                </p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Players</h3>
+                <p>
+                    Player is een abstracte klasse waarvan HumanPlayer en AIPlayer overerven. Elke speler heeft een gebruikersnaam, profielfoto en een optionele spelstijl (passief of agressief).
+                </p>
+                <p>
+                    De AIPlayer heeft een moeilijkheidsgraad (easy, medium, hard of elite) en roept via <code>decideTurn()</code> het AI-model aan om de beste beurt te berekenen op basis van de huidige spelstatus.
+                </p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Multiplayer</h3>
+                <p>
+                    MultiplayerService beheert de realtime synchronisatie tussen twee online spelers via 'polling'. Er zijn twee fases: lobbypollen (elke seconde) in de wachtruimte en beurtpollen (elke 2 seconden) tijdens het spel.
+                </p>
+                <p>
+                    Nieuwe zetten van de tegenstander worden automatisch omgezet naar Move-objecten en uitgevoerd op het bord. De service erft van Observable zodat de UI automatisch geüpdatet wordt.
+                </p>
+            </section>
+
+            <section class="pixel-box">
+                <h3>Instellingen</h3>
+                <p>
+                    De selectionsliders beheren de instellingen vóór dat er een spel start. Ze werken op hetzelfde principe: een circulaire index die verhoogd of verlaagd kan worden.
+                </p>
+                <p>
+                    Er zijn opties voor kleurkeuze, profielfoto (18 foto's), beginnende speler en thema (4 thema's). De kleurpicker blokkeert automatisch de kleur die de andere speler al heeft geselecteerd.
+                </p>
+            </section>
+
+        </section>
+
+        <article class="pixel-box">
+            <h2>Hoe werkt het spelverloop?</h2>
+            <ol class="spelverloop-lijst">
+                <li>
+                    <p class="model-stap">Instellingen</p>
+                    <p>Spelers kiezen hun kleur, profielfoto en het thema via de pickers. Daarna wordt bepaald wie er als eerste mag starten.</p>
+                </li>
+                <li>
+                    <p class="model-stap">Spel aanmaken</p>
+                    <p><code>AppController.createGame()</code> maakt een Game-object aan, initialiseert het bord met de startopstelling en slaat het spel op in de database.</p>
+                </li>
+                <li>
+                    <p class="model-stap">Beurt starten</p>
+                    <p><code>Game.startNewTurn(player)</code> maakt een nieuw Turn-object aan voor de actieve speler en registreert dit in de database.</p>
+                </li>
+                <li>
+                    <p class="model-stap">Peg selecteren + zet uitvoeren</p>
+                    <p>De Presenter roept <code>selectStartPeg()</code> en daarna <code>executeMove(destinationPeg)</code> aan. De zet wordt gevalideerd, uitgevoerd op het bord en opgeslagen.</p>
+                </li>
+                <li>
+                    <p class="model-stap">Tweede zet</p>
+                    <p>Elke beurt heeft maximaal twee zetten. Na de tweede zet roept het model <code>switchCurrentPlayer()</code> aan en begint de tegenstander zijn beurt.</p>
+                </li>
+                <li>
+                    <p class="model-stap">Wincondities controleren</p>
+                    <p><code>checkWinCondition()</code> telt de Pawns op de laatste rij. Bij 2 Pawns wordt er eerst een melding getoond, en zodra een speler 3 Pawns heeft op de laatste rij, dan eindigt het spel en wordt de winnaar en de spelstatistieken getoond.</p>
+                </li>
+            </ol>
+        </article>
+
+        <article class="pixel-box">
+            <h2>Spelstatistieken</h2>
+            <p>
+                De klasse Game bevat aantal methodes om statistieken te berekenen. Op het einde van een spel kan je de jouw prestaties zien, op basis van de tijd die bij elke zet wordt bijgehouden.
+            </p>
+
+            <section class="statistieken flex-container">
+                <h3 class="hidden-title">Statistieken overzicht</h3>
+
+                <section class="pixel-box">
+                    <h4>Spelduur</h4>
+                    <p><code>calculateGameDuration()</code> berekent de totale speeltijd in seconden van alle beurten.</p>
+                </section>
+
+                <section class="pixel-box">
+                    <h4>Gemiddelde zettijd</h4>
+                    <p><code>calculatePlayerAvgMoveDuration()</code> toont hoe lang een speler gemiddeld over één zet deed.</p>
+                </section>
+
+                <section class="pixel-box">
+                    <h4>Spelstijl</h4>
+                    <p><code>calculatePlaystyle()</code> zet de speelstijl van de speler op Agressief als minstens 50% van alle zetten omhoog gingen, anders op Passief.</p>
+                </section>
+
+                <section class="pixel-box">
+                    <h4>Aantal zetten</h4>
+                    <p><code>countPlayerMoves()</code> en <code>countPlayerTurns()</code> tellen het totale aantal zetten en beurten per speler.</p>
+                </section>
+
+            </section>
+        </article>
+
+    </main>
+
+    <footer class="pixel-box">
+        <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+    </footer>
+
+</body>
+</html>

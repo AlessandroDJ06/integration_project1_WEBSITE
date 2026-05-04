@@ -1,12 +1,12 @@
 :root {
-    --color-gold: #f6cd26;         
-    --color-bronze: #ac6b26;       
-    --color-brown-primary: #563226; 
-    --color-brown-deep: #331c17;   
-    --color-terra: #bb7f57;        
-    --color-taupe: #725956;        
-    --color-black-soft: #393939;   
-    --color-black-deep: #202020;   
+    --color-gold: #f6cd26;
+    --color-bronze: #ac6b26;
+    --color-brown-primary: #563226;
+    --color-brown-deep: #331c17;
+    --color-terra: #bb7f57;
+    --color-taupe: #725956;
+    --color-black-soft: #393939;
+    --color-black-deep: #202020;
 }
 
 @font-face {
@@ -19,6 +19,14 @@
 main, header,
 #menu .submenu:hover ul {
     display: flex;
+}
+code {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: var(--color-gold);
+    background-color: #563226;
+    padding: 2px 5px;
+    border-radius: 4px;
 }
 
 header, main, nav #menu li a, footer {
@@ -71,11 +79,11 @@ button, body {
     overflow: hidden;
 }
 
-.pixel-box, 
-.pixel-button, 
+.pixel-box,
+.pixel-button,
 #menu .submenu ul {
     border: none;
-    box-shadow: 
+    box-shadow:
         -3px  0   0 0 var(--color-gold),
          3px  0   0 0 var(--color-gold),
          0   -3px 0 0 var(--color-gold),
@@ -105,7 +113,7 @@ button, body {
 }
 
 nav {
-    max-width: max-content; 
+    max-width: max-content;
     padding: 0;
     z-index: 100;
 }
@@ -116,8 +124,8 @@ nav {
     padding: 0;
     margin: 0;
     display: grid;
-    grid-auto-flow: column; 
-    grid-auto-columns: 1fr; 
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
 }
 
 #menu li {
@@ -146,16 +154,16 @@ nav {
 #menu .submenu ul {
     display: none;
     background-color: var(--color-black-deep);
-    min-width: 100%; 
-    width: max-content; 
+    min-width: 100%;
+    width: max-content;
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 999; 
+    z-index: 999;
 }
 
 #menu .submenu:hover ul {
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 #menu, footer {
@@ -189,7 +197,7 @@ header {
 
 main, article {
     max-width: 90%;
-    gap: 60px; 
+    gap: 60px;
 }
 
 .flex-container {

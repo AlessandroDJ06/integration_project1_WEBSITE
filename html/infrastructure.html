@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/infrastructure.css">
+    <title>Infrastructure</title>
+</head>
+<body>
+
+<header>
+    <h1 class="game-title">ZAROC</h1>
+
+    <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+        <h2 class="hidden-title">navigatie</h2>
+        <ul>
+            <li class="submenu">
+                <a href="/index.html">Home</a>
+                <ul>
+                    <li><a href="spelregels.html">Spelregels</a></li>
+                    <li><a href="#overons">Over ons</a></li>
+                    <li><a href="#stijl">Stijl</a></li>
+                </ul>
+            </li>
+            <li class="submenu">Informatie
+                <ul>
+                    <li><a href="movedata.html">Stats</a></li>
+                    <li><a href="aispeler.html">Ai speler</a></li>
+                    <li><a href="gamebord.html">Spel bord</a></li>
+                    <li><a href="gamemodel.html">Spel logica</a></li>
+                    <li><a href="resourcemanager.html">Resourcemanager</a></li>
+                    <li><a href="infrastructure.html">Infrastructure</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="fotogalerij.html">Foto galerij</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <article class="pixel-box">
+        <h2>Infrastructure</h2>
+        <p>
+            Deze pagina documenteert de server infrastructuur van Zaroc. De server draait op <code>10.134.177.16</code> en host de website, de database, geautomatiseerde scripts en de back-up met externe opslag.
+        </p>
+    </article>
+
+    <article class="pixel-box">
+        <h2>Server Setup & Database</h2>
+
+        <section>
+            <h3>1.1 Accounts & SSH</h3>
+            <p>
+                Eerst werden er gebruikersaccounts aangemaakt voor elk teamlid. Tijdelijke wachtwoorden werden veilig gedeeld via <a href="https://password.link/en" target="_blank">password link</a>. Sudo-rechten werden enkel toegekend aan accounts die ze effectief nodig hebben, via <code>/etc/sudoers.d/team_users</code> (gezet op ALL)
+                SSH-sleutelparen werden gegenereerd en wachtwoordlogin werd uitgeschakeld. We hebben ook een shortcut toegevoegd om hiermee makkelijk te kunnen inloggen.
+                In de ssh config file (op Windows):
+            </p>
+            <pre class="ssh-config">
+<code>Host (shortcut)
+HostName INF102-T01.inf.kdg.be
+User (username)</code>
+</pre>
+            <p>
+                Als een extraatje, hebben wij een script gemaakt om users aan te maken en toe te voegen aan groepen (en eventueel sudo-permissies geven indien nodig)! <code>sudo ./createUsers.sh (username)</code>.
+            </p>
+        </section>
+
+        <section>
+            <h3>1.2 PostgreSQL</h3>
+            <p>
+                PostgreSQL werd geïnstalleerd en geconfigureerd. Er werd een aparte database user 'game' aangemaakt met toegang tot de game-database. Externe toegang wordt beheerd via <code>pg_hba.conf</code>. De firewall laat enkel verbindingen op poort 5432 toe vanuit vertrouwde netwerken.
+            </p>
+
+            <table class="infra-tabel">
+                <caption class="hidden-title">Database configuratie</caption>
+                <thead>
+                <tr>
+                    <th>Onderdeel</th>
+                    <th>Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Database Gebruiker (Postgres)</td><td><code>DBP@ss</code></td></tr>
+                <tr><td>Database Gebruiker (Game)</td><td><code>game</code></td></tr>
+                <tr><td>Log bestand</td><td><code>/var/lib/pgsql/data/log</code></td></tr>
+                <tr><td>Poort</td><td><code>5432</code></td></tr>
+                <tr><td>Clientverbindingen</td><td><code>10.0.0.0/8</code></td></tr>
+                </tbody>
+            </table>
+        </section>
+    </article>
+
+    <article class="pixel-box">
+        <h2>Webserver & Automatisering</h2>
+
+        <section>
+            <h3>2.1 Apache Webserver & Validator</h3>
+            <p>
+                Apache HTTP Server werd geïnstalleerd en geconfigureerd om de website te hosten op poort 80. De firewall werd aangepast om HTTP-verkeer door te laten. De websitebestanden staan onder <code>/var/www/html</code> met eigenaarschap <code>root:apache</code>.
+            </p>
+            <pre><code>sudo dnf install httpd
+sudo systemctl enable --now httpd
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload</code></pre>
+            <p>
+                Een serviceaccount svcteam werd aangemaakt voor het uitvoeren van geautomatiseerde scripts. Dit account heeft geen loginshell (<code>/sbin/nologin</code>).
+                De HTML-validator controleert dagelijks om 12:00 alle webpagina's op validatiefouten. Het script draait als svcteam en schrijft zijn resultaten naar <code>/opt/validator/data/</code>. Vijf minuten later wordt <code>check_errors.sh</code> uitgevoerd en bij problemen wordt er een melding gestuurd naar alle teamleden.
+            </p>
+
+            <table class="infra-tabel">
+                <caption class="hidden-title">Validator configuratie</caption>
+                <thead>
+                <tr>
+                    <th>Onderdeel</th>
+                    <th>Pad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Script</td><td><code>/opt/validator/auto-validation.sh</code></td></tr>
+                <tr><td>Output</td><td><code>/opt/validator/data/</code></td></tr>
+                <tr><td>Logbestand</td><td><code>/opt/validator/log/validator.log</code></td></tr>
+                <tr><td>Eigenaarschap</td><td><code>root:project</code></td></tr>
+                <tr><td>Permissies</td><td><code>User: rwx, Group: rwx, Others: ---</code></td></tr>
+
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>2.2 Database Export naar JSON</h3>
+            <p>
+                Elk uur exporteert <code>dbexport.sh</code> de data uit PostgreSQL naar een JSON-bestand dat via de website publiek beschikbaar is. Het script verbindt met de database, exporteert naar CSV, converteert met Python naar JSON en kopieert het resultaat naar de juiste map.
+            </p>
+
+            <table class="infra-tabel">
+                <caption class="hidden-title">DB export configuratie</caption>
+                <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Pad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Script</td><td><code>/opt/dbexport/dbexport.sh</code></td></tr>
+                <tr><td>JSON output</td><td><code>/opt/dbexport/data/game.json</code></td></tr>
+                <tr><td>Logbestand</td><td><code>/opt/dbexport/log/dbexport.log</code></td></tr>
+                <tr><td>Web URL</td><td><code>https://zaroc-kdg.duckdns.org/game.json</code></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>Crontab overzicht</h3>
+            <p>
+                Alle geautomatiseerde taken zijn geconfigureerd via crontab. De back-up draait als root, alle overige scripts als svcteam.
+            </p>
+        </section>
+    </article>
+
+    <article class="pixel-box">
+        <h2>Back-up & Netwerkanalyse</h2>
+
+        <section>
+            <h3>3.1 Back-up script</h3>
+            <p>
+                Het back-upscript draait dagelijks om 02:00 en voert de volgende stappen uit: </p>
+
+            <section class="backup-stappen flex-container">
+                <h4 class="hidden-title">Back-up stappen</h4>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Mounten</h5>
+                    <p>De externe schijf <code>/dev/sdb1</code> wordt gemonteerd op <code>/mnt/external_backup</code> en gecontroleerd op schrijfrechten.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Archiveren</h5>
+                    <p>Een <code>.tar.gz</code> archief wordt aangemaakt van <code>/var/www/html</code>, <code>/opt/dbexport</code> en <code>/opt/validator</code>.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Integriteit</h5>
+                    <p>Een SHA-256 hash wordt berekend en opgeslagen naast het archief. Bij een restore wordt de hash eerst geverifieerd.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Extern verzenden</h5>
+                    <p>Archief en hashbestand worden via SCP met een SSH-sleutel doorgestuurd naar de inf102-t02 server.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Opruimen</h5>
+                    <p>Back-ups ouder dan 14 dagen worden automatisch verwijderd van de externe schijf.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Unmounten</h5>
+                    <p>De externe schijf wordt ontkoppeld. Bij een fout in een eerdere stap gebeurt dit via een noodprocedure.</p>
+                </section>
+                <p>
+                    Elke stap wordt gelogd naar <code>/opt/backup/log/backup.log</code>. Bij een fout wordt de schijf veilig ontkoppeld en verstuurt het script een pushmelding via Pushover.
+                </p>
+            </section>
+
+            <table class="infra-tabel">
+                <caption class="hidden-title">Back-up configuratie</caption>
+                <thead>
+                <tr>
+                    <th>Onderdeel</th>
+                    <th>Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>Script</td><td><code>/opt/backup/backup.sh</code></td></tr>
+                <tr><td>Logbestand</td><td><code>/opt/backup/log/backup.log</code></td></tr>
+                <tr><td>Externe schijf</td><td><code>/dev/sdb1</code> → <code>/mnt/external_backup</code></td></tr>
+                <tr><td>Bewaartermijn</td><td>14 dagen</td></tr>
+                <tr><td>Externe server</td><td><code>inf102-t02.inf.kdg.be</code></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>3.2 Network Sniffing & HTTPS Beveiliging</h3>
+            <p>
+                Tijdens network sniffing met Wireshark zagen wij dat data via HTTP (poort 80) volledig leesbaar was. Om dit op te lossen, hebben wij gewerkt met een Let's Encrypt certificaat. We koppelden hiervoor een nieuwe domein (via DuckDNS) <code>zaroc-kdg.duckdns.org</code> aan onze server.
+            </p>
+
+            <section class="https-stappen flex-container">
+                <h4 class="hidden-title">HTTPS stappen</h4>
+
+                <section class="pixel-box infra-stap">
+                    <h5>DNS bypassen</h5>
+                    <p>De school-DNS blokkeerde externe verbindingen. <code>/etc/resolv.conf</code> werd tijdelijk gericht naar Google DNS (<code>8.8.8.8</code>) zodat Certbot kon werken.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>DNS-01 challenge</h5>
+                    <p>Omdat Let's Encrypt onze server niet via poort 80 kon bereiken, werd de <code>certbot-dns-duckdns</code> plugin gebruikt. Die plaatst automatisch de vereiste verificatiecode als TXT-record in de DuckDNS API.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Certificaat installeren</h5>
+                    <p>Na goedkeuring ontving de server <code>fullchain.pem</code> en <code>privkey.pem</code>. Deze werden gekoppeld aan de Apache configuratie voor HTTPS op poort 443.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>HTTP → HTTPS redirecten</h5>
+                    <p>Alle HTTP-verzoeken op poort 80 worden automatisch doorgestuurd naar HTTPS. Het verkeer is daardoor beveiligd.</p>
+                </section>
+
+                <section class="pixel-box infra-stap">
+                    <h5>Database beveiliging</h5>
+                    <p>Ook PostgreSQL werd beveiligd: via certificaten en instelling <code>ssl = on</code> in <code>postgresql.conf</code>. De queries zijn nu niet meer zichtbaar.</p>
+                </section>
+            </section>
+        </section>
+    </article>
+
+</main>
+
+<footer class="pixel-box">
+    <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+</footer>
+
+</body>
+</html>
