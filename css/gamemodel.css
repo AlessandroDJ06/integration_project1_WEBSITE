@@ -10,15 +10,14 @@
     list-style: none;
     padding: 0px;
     counter-reset: stap-teller;
-    display: flex;
-    flex-direction: column;
 }
 
 .spelverloop-lijst li {
     counter-increment: stap-teller;
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 30px;
+    gap: 15px 30px;
     padding: 20px 10px;
 }
 
@@ -30,15 +29,15 @@
 }
 
 .spelverloop-lijst p {
-    margin: 0px;
     text-align: start;
-    flex: 1;
+    flex: 1 1 300px;
     line-height: 1.5;
+    margin-block: 0;
+    margin-inline: 0;
 }
 
 .spelverloop-lijst p.model-stap {
-    flex: 0 0 290px;
-    margin: 0px;
+    flex: 0 1 290px;
     font-weight: bold;
     font-size: 1.2em;
 }

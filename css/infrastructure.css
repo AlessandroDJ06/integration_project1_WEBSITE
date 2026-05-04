@@ -10,7 +10,6 @@ article > section:first-of-type {
 }
 
 .infra-tabel {
-    width: 100%;
     border-collapse: collapse;
     margin-top: 16px;
 }
@@ -30,7 +29,6 @@ article > section:first-of-type {
 .https-stappen {
     margin: 20px auto;
     max-width: 100%;
-    width: 100%;
     justify-content: center;
 }
 

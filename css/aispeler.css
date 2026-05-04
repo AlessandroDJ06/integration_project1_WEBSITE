@@ -1,38 +1,22 @@
-.ai-spelers, .extra-info {
-    margin: 0 auto;
-}
-
 .extra-info {
     max-width: 1200px;
+    margin-inline: auto;
 }
 
 .extra-info > section.pixel-box {
     flex: 1 1 300px;
 }
 
-.extra-info, .ai-spelers{
-    width: 100%;
-}
-
 .ai-spelers {
     max-width: 1200px;
-    justify-content: center;
+    place-content: center;
     gap: 50px;
     align-items: stretch;
+    margin-inline: auto;
 }
-
-
-
 figure {
     flex: 1 1 200px;
     max-width: 250px;
-    margin: 0;
-}
-
-section p {
-    text-align: left;
-}
-
-.ai-spelers p {
-    text-align: center;
+    margin-inline: 0;
+    margin-block: 0;
 }

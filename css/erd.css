@@ -1,10 +1,9 @@
 .erd-foto {
     margin: 10px 0 0 0;
-    text-align: center;
 }
 
 .erd-foto img {
-    max-width: 100%;
+    max-width: fit-content;
     height: auto;
 }
 

@@ -1,6 +1,6 @@
-h2 { line-height: 3; }
-
-h4 { color: var(--color-gold); }
+h2 {
+    line-height: 3;
+}
 
 article p {
     line-height: 1.8;
@@ -32,7 +32,10 @@ article > section.pixel-box:nth-child(4) {
     gap: 1.5rem;
 }
 
-article > section.pixel-box:nth-child(4) > h3 { flex: 0 0 100%; }
+article > section.pixel-box:nth-child(4) > h3,
+article > section.pixel-box:nth-child(4) > p {
+    flex: 0 0 100%;
+}
 
 article > section.pixel-box:nth-child(4) > section.pixel-box {
     flex: 1 1 340px;
@@ -42,6 +45,7 @@ article > section.pixel-box:nth-child(4) > section.pixel-box {
     align-items: flex-start;
     padding: 1.5rem;
 }
+
 article > section.pixel-box:nth-child(4) > section.pixel-box:last-child {
     flex: 0 0 100%;
     max-width: 90%;
@@ -53,9 +57,6 @@ article > section.pixel-box:nth-child(4) > section.pixel-box:last-child img {
     width: 60%;
     height: 260px;
     margin: auto 0 0 0;
-}
-article > section.pixel-box:nth-child(4) > section.pixel-box h4 {
-    width: 100%;
 }
 
 article img {
