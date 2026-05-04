@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zaroc - Database</title>
+    <link rel="shortcut icon" href="../images/zaroc.png">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/database.css">
+
+</head>
+<body>
+<header>
+    <h1 class="game-title">ZAROC</h1>
+
+    <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+        <h2 class="hidden-title">navigatie</h2>
+        <ul>
+            <li class="submenu">
+                <a href="../index.html"> Home</a>
+                <ul>
+                    <li><a href="../html/spelregels.html">Spelregels</a></li>
+                    <li><a href="../html/contact.html">Over ons</a></li>
+                    <li><a href="../html/fotogalerij.html">Stijl</a></li>
+                </ul>
+            </li>
+            <li class="submenu">Informatie
+                <ul>
+                    <li><a href="../html/database.html">Databank</a></li>
+                    <li><a href="../html/conceptualthinking.html">Conceptual thinking</a></li>
+                    <li><a href="../html/movedata.html">Stats</a></li>
+                    <li><a href="../html/aispeler.html">Ai speler</a></li>
+                    <li><a href="../html/multiplayer.html">Multiplayer</a></li>
+                    <li><a href="../html/gamebord.html">Spel bord</a></li>
+                    <li><a href="../html/resourcemanager.html">Resourcemanager</a></li>
+                    <li><a href="../html/infrastructure.html">Infrastructure</a></li>
+                    <li><a href="../html/erd.html">ERD</a></li>
+                    <li><a href="../html/gamemodel.html">Gamemodel</a></li>
+
+                </ul>
+            </li>
+
+            <li><a href="../html/contact.html">Contact</a></li>
+            <li><a href="../html/fotogalerij.html">foto galerij</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="hero" class="pixel-box">
+        <h2>Onze database</h2>
+        <p>Achter de schermen van Zaroc draait een krachtige SQL-database. Hier slaan we alle belangrijke gegevens
+            veilig en gestructureerd op, van spelersprofielen tot highscores en actuele spelstatistieken. Op deze pagina
+            geven we je een kijkje onder de motorkap en laten we zien hoe onze data is opgebouwd.</p>
+    </section>
+
+    <section class="db-galerij flex-container">
+        <h2 class="hidden-title">Onze database</h2>
+
+        <article class="pixel-box text-card flex-column-container">
+            <h3>SQL-database</h3>
+            <p>Een SQL-database werkt als een supergeorganiseerd digitaal archief vol overzichtelijke tabellen.
+                In plaats van alle Zaroc-data op één grote hoop te gooien,
+                splitsen we het netjes op: we hebben bijvoorbeeld één tabel voor alle spelers en één voor alle games.
+                Omdat het een relationele database is, zijn al deze tabellen logisch met elkaar verbonden. Via de
+                programmeertaal SQL kunnen we razendsnel informatie opvragen en combineren. Zo koppelen we met één
+                simpele query direct de juiste speler aan de juiste games, zodat de game altijd vlekkeloos en
+                snel blijft draaien!</p>
+        </article>
+
+        <article class="pixel-box text-card flex-column-container">
+            <h3>Queries</h3>
+            <p>Queries zijn de gerichte opdrachten die we naar de database sturen om gegevens op te halen, toe te voegen
+                of aan te passen. Wij maken hierbij specifiek gebruik van <strong>prepared statements</strong>. Dit is
+                een techniek waarbij de SQL-code en de ingevoerde data strikt gescheiden blijven. Het grote voordeel
+                hiervan is optimale veiligheid: het beschermt ons systeem tegen zogenaamde 'SQL-injecties'
+                (hackpogingen). Daarnaast verbetert het de prestaties, omdat de database de opdracht sneller kan
+                hergebruiken.</p>
+        </article>
+
+        <article class="pixel-box text-card flex-column-container">
+            <h3>Utils</h3>
+            <p>Omdat er vaak dezelfde algemene methodes nodig zijn om de vele queries uit te voeren hebben wij een set
+                algemene methodes gemaakt die van overal uit het spel uitgevoerd kunnen worden zodat alles zo vlot
+                mogelijk verloopt.</p>
+        </article>
+
+
+        <article class="pixel-box text-card flex-column-container">
+            <h3>Leaderboard</h3>
+            <p>Zoals elke goede game heeft ons spel ook een leaderboard waar je jouw scores kan vergelijken met die van
+                je vrienden en proberen de beste te zijn. Ons leaderboard kan gesorteerd worden op verschillende
+                criteria zonder elke keer de data terug aan de database te vragen door dat we de data tijdelijk lokaal
+                bijhouden. Zo Kan je super snel iedereen laten zien hoe goed je bent!</p>
+        </article>
+    </section>
+
+
+</main>
+
+
+<footer class="pixel-box">
+    <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+</footer>
+
+</body>
+</html>

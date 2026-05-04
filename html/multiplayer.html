@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/zaroc.png">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/multiplayer.css">
+    <title>multiplayer</title>
+</head>
+<body>
+    <header>
+        <h1 class="game-title">ZAROC</h1>
+
+        <nav id="menu" class="pixel-box" aria-label="Hoofdnavigatie">
+            <h2 class="hidden-title">navigatie</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="../index.html"> Home</a>
+                    <ul>
+                        <li><a href="../html/spelregels.html">Spelregels</a></li>
+                        <li><a href="../html/contact.html">Over ons</a></li>
+                        <li><a href="../html/fotogalerij.html">Stijl</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">Informatie
+                    <ul>
+                        <li><a href="../html/database.html">Databank</a></li>
+                        <li><a href="../html/conceptualthinking.html">Conceptual thinking</a></li>
+                        <li><a href="../html/movedata.html">Stats</a></li>
+                        <li><a href="../html/aispeler.html">Ai speler</a></li>
+                        <li><a href="../html/multiplayer.html">Multiplayer</a></li>
+                        <li><a href="../html/gamebord.html">Spel bord</a></li>
+                        <li><a href="../html/resourcemanager.html">Resourcemanager</a></li>
+                        <li><a href="../html/infrastructure.html">Infrastructure</a></li>
+                        <li><a href="../html/erd.html">ERD</a></li>
+                        <li><a href="../html/gamemodel.html">Gamemodel</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="../html/contact.html">Contact</a></li>
+                <li><a href="../html/fotogalerij.html">foto galerij</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="pixel-box">
+            <h2>Multiplayer</h2>
+            <p>Stel je voor, je wilt zo graag zaroc spelen tegen 1 van je vrienden maar jullie zijn niet bij elkaar. Wij
+                hebben hier de oplossing voor. Inderdaad Multiplayer! 
+            </p>
+        </article>
+
+        <section class="flex-container">
+            <h2 class="hidden-title">Extra info</h2>
+            <article class="pixel-box">
+                <h3>Hoe werkt het</h3>
+                <p>Om dit te laten werken maken we gebruik van de database en een techniek die pollen noemt.
+                    Pollen is eigenlijk heel simpel! Wanneer je een game start checkt de database om de 2seconden of er 
+                    een nieuwe move is gebeurd, en als dit het geval is gebruikt hij dezelfde logica die we ook gebruiken
+                    bij unfinishedgames om de game op te zetten!
+                </p>
+            </article>
+
+            <article class="pixel-box">
+                <h3>Hoe join je elkaar</h3>
+                <p>
+                    Als je op het multiplayer menu klikt krijg je 2 opties, je kan een game joinen of starten.
+                    Als je een game start krijg je een code die de andere persoon moet ingeven. En logisch gezien als je
+                    een game joint krijg je de optie om een code in te geven.
+                    Wanneer je dit doet start de lobbyPoller, en die checkt of je succesvol gejoined bent! Wanneer dat gebeurt is
+                    kan de host de game starten en voila! Veel speel plezier!
+                </p>
+            </article>
+        </section>
+
+        <aside class="pixel-box">
+            <h2>Sfeerbeelden</h2>
+            <p>Hieronder kan je zien hoe de multiplayer views eruit zien! Wil je meer foto's zien? Ga dan naar de foto galerij</p>
+            <a class="pixel-button primary" href="../html/fotogalerij.html">Foto galerij</a>
+            <section class="sfeerbeelden-grid">
+                <h3 class="hidden-title">fotos multiplayer</h3>
+                <img src="../images/default-theme/hostview-empty.png" alt="hostview-empty">
+                <img src="../images/default-theme/hostview-ready.png" alt="hostview-ready">
+                <img src="../images/default-theme/joinview-empty.png" alt="joinview-empty">
+                <img src="../images/default-theme/joinview-ready.png" alt="joinview-ready">
+            </section>
+
+        </aside>
+    </main>
+
+    <footer class="pixel-box">
+        <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
+    </footer>
+    
+</body>
+</html>

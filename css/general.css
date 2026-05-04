@@ -33,7 +33,7 @@ header, main, nav #menu li a, footer {
     text-align: center;
 }
 
-#menu li, header, main, nav, #menu, footer, article {
+#menu li, header, main, nav, #menu, footer, article,img {
     width: 100%;
 }
 
@@ -55,7 +55,7 @@ body {
     image-rendering: pixelated;
 }
 
-header, main, footer, article {
+header, main, footer, article,p {
     margin: 0 auto;
 }
 
@@ -167,7 +167,7 @@ nav {
 }
 
 #menu, footer {
-    max-width: 80vw;
+    max-width: 90vw;
 }
 
 footer {
@@ -219,4 +219,24 @@ article {
 section {
     padding: 15px;
     line-height: 1.6;
+}
+
+.feature-card a {
+    color: var(--color-terra);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.feature-card a:hover {
+    color: var(--color-gold);
+}
+
+.flex-column-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.centered-card{
+    justify-content: center;
 }
