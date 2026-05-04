@@ -1,12 +1,12 @@
 #diagram-galerij {
-    gap: 2rem;
-    width: 90vw;
-    margin: 2rem auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 #diagram-galerij .pixel-box {
     flex: 1 1 800px;
+
 
 }
 
