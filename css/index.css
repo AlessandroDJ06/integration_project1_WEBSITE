@@ -63,3 +63,13 @@
 #features > section.pixel-box {
     flex: 1 1 200px;
 }
+
+#trailer {
+    margin: 0 0 30px 0;
+    width: 100%;
+}
+
+#trailer video {
+    width: 100%;
+    display: block;
+}
