@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="../images/zaroc.png">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/infrastructure.css">
+    <script defer src="/scripts/chatbot.js"></script>
     <title>ZAROC - Infrastructure</title>
 </head>
 <body>
@@ -268,6 +269,32 @@ sudo firewall-cmd --reload</code></pre>
     </article>
 
 </main>
+
+<aside class="chat-container flex-column-container">
+    <h2 class="hidden-title">chatbot</h2>
+    <section class="pixel-box chat-window flex-column-container" id="chatWindow" aria-label="Chat Interface">
+        <header class="chat-header flex-container">
+            <h3>Orzac : AI assistent</h3>
+            <button type="button" class="close-btn" id="toggleChat">×</button>
+        </header>
+        
+        <article class="chat-body flex-column-container">
+            <h4 class="hidden-title">chatberichten</h4>
+            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze website! zoek je een pagina? </p>
+        </article>
+        
+        <footer class="chat-footer">
+            <form class="flex-container">
+                <input id="question" placeholder="Typ..." aria-label="Bericht">
+                <button type="submit" class="pixel-button primary">VERSTUUR</button>
+            </form>
+        </footer>
+    </section>
+    <button class="pixel-button primary chat-button flex-container" id="chatBtn" aria-label="Open Chat">
+        ?
+    </button>
+</aside>
+
 
 <footer class="pixel-box">
     <p>&copy; 2026 ZAROC Game. INF102 - T01</p>

@@ -23,7 +23,6 @@ main, header,
 code {
     font-family: monospace;
     font-size: 1.1rem;
-    color: var(--color-gold);
     background-color: #563226;
     padding: 2px 5px;
     border-radius: 4px;
@@ -34,18 +33,31 @@ header, main, nav #menu li a, footer {
 }
 
 #menu li, header, main, nav, #menu, footer, article, img, .infra-tabel, .backup-stappen, .https-stappen, table,
-article > section.pixel-box:nth-child(4) > section.pixel-box h4 {
+article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body {
     width: 100%;
 }
 
 #menu li a, body, .pixel-button.primary, .spelverloop-lijst p.model-stap,
-tbody tr:hover td, th,
-h4, code {
+tbody tr:hover td, th, h4, code,
+.chat-header h4, .close-btn, .chat-footer input {
     color: var(--color-gold);
+}
+
+body, #menu ul, #menu li, article,
+.chat-window, .chat-body, .chat-footer,
+.chat-footer form, .chat-footer input {
+    box-sizing: border-box;
+}
+
+.centered-card, .chat-window,.chat-button {
+    justify-content: center;
 }
 
 header, main {
     flex-direction: column;
+}
+
+header, main, .chat-window, .chat-header, .chat-button {
     align-items: center;
 }
 
@@ -54,7 +66,6 @@ body {
     margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
-    box-sizing: border-box;
     image-rendering: pixelated;
 }
 
@@ -123,7 +134,6 @@ nav {
 
 #menu ul {
     list-style-type: none;
-    box-sizing: border-box;
     padding: 0;
     margin: 0;
     display: grid;
@@ -133,7 +143,6 @@ nav {
 
 #menu li {
     background-color: var(--color-brown-deep);
-    box-sizing: border-box;
     padding: 1em;
     font-size: 0.8rem;
 }
@@ -187,7 +196,6 @@ p {
 }
 
 header {
-    align-items: center;
     gap: 30px;
 }
 
@@ -216,7 +224,6 @@ main, article {
 
 article {
     padding: 20px 40px;
-    box-sizing: border-box;
 }
 
 section {
@@ -240,6 +247,129 @@ section {
     flex-direction: column;
 }
 
-.centered-card{
-    justify-content: center;
+
+.chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 1000;
+    margin: 10px;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.chat-window {
+    width: 500px;
+    height: 400px;
+    display: none;
+}
+
+
+.chat-header {
+    justify-content: space-between;
+    border-bottom: 3px solid var(--color-gold);
+    flex-shrink: 0;
+    margin-top: 10px;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.chat-header h4 {
+    margin: 0 auto;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity 0.1s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.chat-body {
+    flex: 1 1 auto;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 0.55rem;
+    line-height: 1.8;   
+    gap: 15px;              
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    
+}
+
+.chat-body::-webkit-scrollbar {
+    display: none;
+}
+
+
+.chat-footer {
+    padding: 12px 15px;
+    flex-shrink: 0;
+    border-top: 2px solid var(--color-taupe);
+}
+
+.chat-footer form {
+    gap: 10px;
+    align-items: stretch;
+}
+
+.chat-footer input {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--color-black-soft);
+    border: 2px solid var(--color-taupe);
+    font-family: "PressStart2P", monospace;
+    font-size: 0.45rem;
+    padding: 8px 10px;
+    transition: border-color 0.2s;
+}
+
+.chat-button {
+    min-width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+}
+
+.chat-body p {
+    max-width: 75%;
+    font-size: 0.55rem;
+    padding: 8px 12px;
+    margin: 0;            
+    color: var(--color-gold);
+}
+
+.chat-body p.system {
+    background-color: var(--color-brown-deep);
+    align-self: flex-start;
+}
+
+.chat-body p.user {
+    background-color: var(--color-brown-primary);
+    align-self: flex-end;  
+}
+
+.chat-body a.chat-link {
+    display: block;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-gold);
+    font-size: 0.5rem;
+    width: fit-content;
+    align-self: center;   
+}
+
+.chat-body a.chat-link:hover {
+    background-color: var(--color-bronze);
+    color: var(--color-black-deep);
 }
