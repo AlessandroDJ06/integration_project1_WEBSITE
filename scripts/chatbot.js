@@ -20,11 +20,23 @@ function toggleChat() {
 
 function handleSubmit(event){
     let message = document.querySelector('#question').value;
-    let article = document.querySelector('.chat-body');
+    let article = document.querySelector('.chat-body');2
     showMessageUserOnScreen(message,article);
     handleAiResponse(message,article);
+    document.querySelector('#question').value = '';
     event.preventDefault();
     
+}
+
+async function saveChatbotData(message,response){
+    await fetch("/saveData.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+        message: message,
+        response: response
+    }),
+    });
 }
 
 function showMessageUserOnScreen(message,article){
@@ -72,7 +84,6 @@ function handleAiResponse(message,article){
         p.innerHTML = "Voor meer info over de regels kan je terecht op volgende pagina!";
         a.href = "/html/spelregels.html";
         a.innerHTML = "spelregels"
-   
     } else if (asksAboutUs){
         p.innerHTML = "Je kan zien wie de game ontwikkelt heeft op onze contact pagina ;)";
         a.href = "/html/contact.html";
@@ -124,6 +135,7 @@ function handleAiResponse(message,article){
     if(appendExtraLink){
         article.appendChild(extraLink);
     }
+    saveChatbotData(message,p.innerHTML);
 }
 
 function containsKeyword(message,keyWords){
