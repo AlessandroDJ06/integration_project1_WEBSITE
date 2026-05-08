@@ -7,7 +7,9 @@ $gesprek = file_exists($bestand) ? json_decode(file_get_contents($bestand), true
 
 $gesprek[] = [
   "message" => $data["message"],
-  "response" => $data["response"]
+  "category" => $data["category"],
+  "recognized" => $data["recognized"]
+
 ];
 
 file_put_contents($bestand, json_encode($gesprek, JSON_PRETTY_PRINT));
