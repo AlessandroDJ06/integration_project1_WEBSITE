@@ -93,7 +93,7 @@ function handleAiResponse(message,article){
         p.innerHTML = "Voor databases hebben we 2 pagina's! 1 gaat over de implementatie en de andere het erd, ik geef je beide linkjes ;)";
         a.href = "/html/database.html";
         a.innerHTML = "implemenatie";
-        extraLink.href = "html/erd.html";
+        extraLink.href = "/html/erd.html";
         extraLink.innerHTML = "ERD";
         appendExtraLink = true;
     } else if (asksForStyle){
