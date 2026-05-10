@@ -22,7 +22,7 @@ function handleSubmit(event){
     let message = document.querySelector('#question').value;
     let article = document.querySelector('.chat-body');
     showMessageUserOnScreen(message,article);
-    p = showMessageAiOnScreen(message,article,null);
+    let p = showMessageAiOnScreen(message,article,null);
     handleAiResponse(message,article,p);
 
     document.querySelector('#question').value = '';
