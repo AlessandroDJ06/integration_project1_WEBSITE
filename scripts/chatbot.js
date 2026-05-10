@@ -59,6 +59,7 @@ async function showMessageAiOnScreen(message, article, p) {
 
         return p
     } else {
+        p.innerHTML = message;
         const lowercaseMessage = message.toLowerCase();
         let category = "general";
         let recognized = true;
