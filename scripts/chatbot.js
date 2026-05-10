@@ -22,7 +22,9 @@ function handleSubmit(event){
     let message = document.querySelector('#question').value;
     let article = document.querySelector('.chat-body');
     showMessageUserOnScreen(message,article);
-    showMessageAiOnScreen(message,article)
+    p = showMessageAiOnScreen(message,article,null);
+    handleAiResponse(message,article,p);
+
     document.querySelector('#question').value = '';
     event.preventDefault();
     
@@ -47,75 +49,81 @@ function showMessageUserOnScreen(message,article){
     article.appendChild(p);
 }
 
-function showMessageAiOnScreen(message, article) {
-    let p = document.createElement('p');
-    p.innerHTML = "aan het denken...";
-    p.classList.add('pixel-box', 'system');
-    article.appendChild(p);
+async function showMessageAiOnScreen(message, article, p) {
+    if (p == null){
+        let p = document.createElement('p');
+        p.innerHTML = "<em>aan het denken...</em>";
+        p.classList.add('pixel-box', 'system');
+        article.appendChild(p);
+        article.scrollTop = article.scrollHeight;
 
-    let aiAnswer = await handleAiResponse(message);
-    p.innerHTML = aiAnswer;
+        return p
+    } else {
+        const lowercaseMessage = message.toLowerCase();
+        let category = "general";
+        let recognized = true;
 
-    const lowercaseMessage = message.toLowerCase();
-    let category = "general";
-    let recognized = true;
+        if (containsKeyword(lowercaseMessage, ["regels", "spelregels", "uitleg", "handleiding", "hoe speel ik", "pion", "beurt", "stapelen"])) {
+            createLink('/html/spelregels.html', "spelregels", article);
+            category = "rules";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["alessandro", "lasha", "illia", "team", "ontwikkelaar", "makers", "wie", "contact"])) {
+            createLink('/html/contact.html', "over ons", article);
+            category = "aboutUs";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["ai", "computer", "tegenstander", "bot", "stefan", "alistair", "moeilijkheid"])) {
+            createLink('/html/aispeler.html', "ai speler", article);
+            category = "ai";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["database", "sql", "query", "erd", "leaderboard", "postgresql"])) {
+            createLink('/html/database.html', "implementatie", article);
+            createLink('/html/erd.html', "ERD", article);
+            category = "database";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["stijl", "thema", "pixel", "retro", "galerij", "look", "art"])) {
+            createLink('/html/fotogalerij.html', "galerij", article);
+            category = "style";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["bord", "logica", "controller", "gamestatus", "diagram", "usecase", "ontwerp", "conceptueel"])) {
+            createLink('/html/gamemodel.html', "gamemodel", article);
+            createLink('/html/conceptualthinking.html', "conceptual", article);
+            category = "logic";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["server", "ip", "ssh", "apache", "infra", "port 5432", "ssl"])) {
+            createLink('/html/infrastructure.html', "infra", article);
+            category = "infra";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["download", "installeren", "setup", "windows", "installer"])) {
+            createLink('/html/installatiepagina.html', "installatie", article);
+            category = "install";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["online", "vrienden", "multiplayer", "lobby", "room_code"])) {
+            createLink('/html/multiplayer.html', "multiplayer", article);
+            category = "multiplayer";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["stats", "statistieken", "data", "zettijd", "gemiddelde", "outlier"])) {
+            createLink('/html/movedata.html', "stats", article);
+            category = "stats";
+        } 
+        else if (containsKeyword(lowercaseMessage, ["account", "registreren", "inloggen", "login", "user"])) {
+            createLink('mailto:alessandro.dejongh@student.kdg.be', "mail alessandro", article);
+            createLink('mailto:lasha.dularidze@student.kdg.be', "mail lasha", article);
+            createLink('mailto:illia.ramael@student.kdg.be', "mail illia", article);
+            category = "account";
+        } 
+        else {
+            recognized = false;
+        }
 
-    if (containsKeyword(lowercaseMessage, ["regels", "spelregels", "uitleg", "handleiding", "hoe speel ik", "pion", "beurt", "stapelen"])) {
-        createLink('/html/spelregels.html', "spelregels", article);
-        category = "rules";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["alessandro", "lasha", "illia", "team", "ontwikkelaar", "makers", "wie", "contact"])) {
-        createLink('/html/contact.html', "over ons", article);
-        category = "aboutUs";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["ai", "computer", "tegenstander", "bot", "stefan", "alistair", "moeilijkheid"])) {
-        createLink('/html/aispeler.html', "ai speler", article);
-        category = "ai";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["database", "sql", "query", "erd", "leaderboard", "postgresql"])) {
-        createLink('/html/database.html', "implementatie", article);
-        createLink('/html/erd.html', "ERD", article);
-        category = "database";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["stijl", "thema", "pixel", "retro", "galerij", "look", "art"])) {
-        createLink('/html/fotogalerij.html', "galerij", article);
-        category = "style";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["bord", "logica", "controller", "gamestatus", "diagram", "usecase", "ontwerp", "conceptueel"])) {
-        createLink('/html/gamemodel.html', "gamemodel", article);
-        createLink('/html/conceptualthinking.html', "conceptual", article);
-        category = "logic";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["server", "ip", "ssh", "apache", "infra", "port 5432", "ssl"])) {
-        createLink('/html/infrastructure.html', "infra", article);
-        category = "infra";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["download", "installeren", "setup", "windows", "installer"])) {
-        createLink('/html/installatiepagina.html', "installatie", article);
-        category = "install";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["online", "vrienden", "multiplayer", "lobby", "room_code"])) {
-        createLink('/html/multiplayer.html', "multiplayer", article);
-        category = "multiplayer";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["stats", "statistieken", "data", "zettijd", "gemiddelde", "outlier"])) {
-        createLink('/html/movedata.html', "stats", article);
-        category = "stats";
-    } 
-    else if (containsKeyword(lowercaseMessage, ["account", "registreren", "inloggen", "login", "user"])) {
-        createLink('mailto:alessandro.dejongh@student.kdg.be', "mail alessandro", article);
-        createLink('mailto:lasha.dularidze@student.kdg.be', "mail lasha", article);
-        createLink('mailto:illia.ramael@student.kdg.be', "mail illia", article);
-        category = "account";
-    } 
-    else {
-        recognized = false;
+        saveChatbotData(message, category, recognized);
+        return;
     }
 
-    saveChatbotData(message, category, recognized);
+
+
 }
 
-function createLink(link,message,article){
+function createLink(link,message,article,p){
     let a = document.createElement('a');
     a.classList.add('pixel-box','chat-link');
 
@@ -125,7 +133,7 @@ function createLink(link,message,article){
     article.appendChild(a);
 }
 
-async function handleAiResponse(message) {
+async function handleAiResponse(message,article,p) {
     const chatResponse = await fetch('/geminihandler.php', {
         method: 'POST',
         body: JSON.stringify({ message: message })
@@ -133,7 +141,7 @@ async function handleAiResponse(message) {
     const chatData = await chatResponse.json();
     const reply = chatData.candidates[0].content.parts[0].text;
 
-    return reply;
+      showMessageAiOnScreen(reply,article,p);
 }
 
 function containsKeyword(message,keyWords){
