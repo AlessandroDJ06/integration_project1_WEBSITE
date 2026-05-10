@@ -51,7 +51,7 @@ function showMessageUserOnScreen(message,article){
 
 async function showMessageAiOnScreen(message, article, p) {
     if (p == null){
-        let p = document.createElement('p');
+        p = document.createElement('p');
         p.innerHTML = "<em>aan het denken...</em>";
         p.classList.add('pixel-box', 'system');
         article.appendChild(p);
