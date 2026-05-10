@@ -22,7 +22,7 @@ function handleSubmit(event){
     let message = document.querySelector('#question').value;
     let article = document.querySelector('.chat-body');
     showMessageUserOnScreen(message,article);
-    handleAiResponse(message,article);
+    showMessageAiOnScreen(message,article)
     document.querySelector('#question').value = '';
     event.preventDefault();
     
@@ -49,9 +49,12 @@ function showMessageUserOnScreen(message,article){
 
 function showMessageAiOnScreen(message, article) {
     let p = document.createElement('p');
-    p.innerHTML = message;
+    p.innerHTML = "aan het denken...";
     p.classList.add('pixel-box', 'system');
     article.appendChild(p);
+
+    let aiAnswer = handleAiResponse(message);
+    p.innerHTML = aiAnswer;
 
     const lowercaseMessage = message.toLowerCase();
     let category = "general";
@@ -122,7 +125,7 @@ function createLink(link,message,article){
     article.appendChild(a);
 }
 
-async function handleAiResponse(message,article) {
+async function handleAiResponse(message) {
     const chatResponse = await fetch('/geminihandler.php', {
         method: 'POST',
         body: JSON.stringify({ message: message })
@@ -130,7 +133,7 @@ async function handleAiResponse(message,article) {
     const chatData = await chatResponse.json();
     const reply = chatData.candidates[0].content.parts[0].text;
 
-    showMessageAiOnScreen(reply,article);
+    return reply;
 }
 
 function containsKeyword(message,keyWords){
@@ -141,10 +144,3 @@ function containsKeyword(message,keyWords){
     }
     return false;
 }
-
-
-
-
-
-
-
