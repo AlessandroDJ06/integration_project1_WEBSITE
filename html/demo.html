@@ -2,12 +2,14 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>ZAROC - Het team</title>
+    <title>ZAROC - Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../images/zaroc.png">
     <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/contact.css">
-    <script defer src="/scripts/chatbot.js"></script>
-
+    <link rel="stylesheet" href="../css/demo.css">
+    <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+    <script defer src="../scripts/chatbot.js"></script>
+    <script defer src="../scripts/demo.js"></script>
 </head>
 <body>
 <header>
@@ -38,45 +40,44 @@
                     <li><a href="../html/erd.html">ERD</a></li>
                 </ul>
             </li>
-
             <li><a href="../html/contact.html">Contact</a></li>
             <li><a href="../html/fotogalerij.html">Foto galerij</a></li>
-
         </ul>
     </nav>
 </header>
 
 <main>
-    <article class="naamkaart flex-container centered-card">
-        <h2 class="hidden-title">Het team</h2>
-        <section class="pixel-box feature-card">
-            <img src="../images/alessandro.png" alt="Foto van Alessandro De Jongh" class="circle-img"/>
-            <h3>Alessandro</h3>
-            <p class="job-titel">Quality controle</p>
-            <p class="flavour-text">Zorgt ervoor dat het werk aan alle standaarden voldoet.</p>
-            <a href="https://gitlab.com/AlessandroDJ06.2" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/AlessandroDJ06/" target="_blank" rel="noopener noreferrer">GitHub ></a>
-        </section>
-
-        <section class="pixel-box feature-card">
-            <img src="../images/lasha.png" alt="Foto van Lasha Dularidze" class="circle-img"/>
-            <h3>Lasha</h3>
-            <p class="job-titel">SPOC</p>
-            <p class="flavour-text">Zorgt ervoor dat alle officiële communicate vlot verloopt.</p>
-            <a href="https://gitlab.com/lasha.dularidze" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/DevLasha" target="_blank" rel="noopener noreferrer">GitHub ></a>
-        </section>
-        <section class="pixel-box feature-card">
-            <img src="../images/illia.png" alt="Foto van Illia Ramael" class="circle-img"/>
-            <h3>Illia</h3>
-            <p class="job-titel">Trello master</p>
-            <p class="flavour-text">Zorgt ervoor dat het trello board up-to-date blijft en wordt gedocumenteerd.</p>
-            <a href="https://gitlab.com/IlliaR_2007" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/IlliaR2007" target="_blank" rel="noopener noreferrer">GitHub ></a>
-        </section>
+    <article class="pixel-box">
+        <h2>Speel de Demo</h2>
+        <p>Probeer Zaroc rechtstreeks in je browser! De demo laadt de volledige JavaFX applicatie via CheerpJ.
+        </p>
     </article>
 
+    <section id="demo-launch" class="pixel-box">
+        <h2>Start de demo</h2>
+        <p>Klik op de knop hieronder om de Zaroc demo te starten. De eerste keer kan het even duren om te laden.</p>
+        <button id="launch-btn" class="pixel-button primary" type="button">&#9654; SPEEL NU</button>
+        <p id="loading-msg" class="demo-hidden">De demo wordt geladen, even geduld...</p>
+    </section>
 
+    <section id="demo-container" class="demo-hidden">
+        <h2 class="hidden-title">Demo venster</h2>
+        <canvas id="cheerpjDisplay"></canvas>
+    </section>
+
+    <section class="flex-container">
+        <h2 class="hidden-title">Demo informatie</h2>
+        <article class="pixel-box feature-card">
+            <h3>Wat kan je doen?</h3>
+            <p>In de demo kan je spelen tegen een AI-tegenstander of lokaal tegen een vriend. Daarnaast zijn alle
+                thema's en instellingen beschikbaar.</p>
+        </article>
+        <article class="pixel-box feature-card">
+            <h3>Wat is uitgeschakeld?</h3>
+            <p>Inloggen, statistieken, unfinished games en online multiplayer zijn niet beschikbaar zonder account.
+                Daarvoor moet je de game downloaden.</p>
+        </article>
+    </section>
 </main>
 
 <aside class="chat-container flex-column-container">
@@ -86,12 +87,11 @@
             <h3>Orzac : AI assistent</h3>
             <button type="button" class="close-btn" id="toggleChat">×</button>
         </header>
-        
         <article class="chat-body flex-column-container">
             <h4 class="hidden-title">chatberichten</h4>
-            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze website! zoek je een pagina? </p>
+            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze
+                website! zoek je een pagina?</p>
         </article>
-        
         <footer class="chat-footer">
             <form class="flex-container">
                 <input id="question" placeholder="Typ..." aria-label="Bericht">
@@ -103,7 +103,6 @@
         ?
     </button>
 </aside>
-
 
 <footer class="pixel-box">
     <p>&copy; 2026 ZAROC Game. INF102 - T01</p>
