@@ -20,9 +20,10 @@ function toggleChat() {
 
 function handleSubmit(event){
     let message = document.querySelector('#question').value;
-    let article = document.querySelector('.chat-body');2
+    let article = document.querySelector('.chat-body');
     showMessageUserOnScreen(message,article);
-    handleAiResponse(message,article);
+    // handleAiResponse(message,article);
+    chatWithGemini(message,article);
     document.querySelector('#question').value = '';
     event.preventDefault();
     
@@ -47,112 +48,90 @@ function showMessageUserOnScreen(message,article){
     article.appendChild(p);
 }
 
-
-function handleAiResponse(message,article){
+function showMessageAiOnScreen(message, article) {
     let p = document.createElement('p');
-    p.classList.add('pixel-box','system');
-
-    let a = document.createElement('a');
-    a.classList.add('pixel-box','chat-link');
-    let extraLink = document.createElement('a');
-    extraLink.classList.add('pixel-box','chat-link');
-
-    let appendLink = true;
-    let appendExtraLink = false;
-    
-    let category = "";
-    let recognized = true;
+    p.innerHTML = message;
+    p.classList.add('pixel-box', 'system');
+    article.appendChild(p);
 
     const lowercaseMessage = message.toLowerCase();
-    
-    const rulesKeywords = ["regels", "spelregels", "uitleg", "handleiding", "wetten", "hoe speel ik", "pion", "beurt", "winnaar", "verliezen", "zijwaarts", "voorwaarts", "eindrij", "pin", "stapelen"];
-    const aiKeywords = ["ai", "computer", "tegenstander", "bot", "verslaan", "moeilijkheid", "stefan", "alistair", "easy", "medium", "hard", "elite", "decideturn", "diepte"];
-    const conceptualKeywords = ["diagram", "usecase", "domeinmodel", "wireframe", "ontwerp", "conceptueel", "dcd", "ssd", "visueel", "schema"];
-    const aboutUsKeywords = ["alessandro", "lasha", "illia", "team", "ontwikkelaar", "makers", "wie", "creatie", "contact", "studenten", "kdg", "project"];
-    const databaseKeywords = ["database", "sql", "query", "tables", "relatie", "erd", "leaderboard", "scores", "gehasht", "postgresql", "game_participation", "tussentabel", "foreign key"];
-    const styleKeywords = ["stijl", "thema", "pixel", "retro", "galerij", "foto", "look", "layout", "graphics", "art", "kleuren", "pawncolor"];
-    const gameLogicKeywords = ["bord", "pawn", "peg", "zet", "beurt", "winnaar", "logica", "controller", "verloop", "appcontroller", "gamestatus", "undo", "legale zet"];
-    const infraKeywords = ["server", "ip", "ssh", "apache", "validator", "cron", "backup", "https", "ssl", "infra", "port 5432", "certbot", "duckdns", "security"];
-    const installKeywords = ["download", "installeren", "gratis", "setup", "ram", "systeemvereisten", "geheugen", "schijfruimte", "windows", "64-bit", "installer"];
-    const multiplayerKeywords = ["online", "vrienden", "samen", "multiplayer", "spelers", "lobby", "join", "host", "guest", "room_code", "pollen", "synchronisatie"];
-    const accountKeywords = ["account", "aanmelden", "registreren", "inloggen", "profiel", "wachtwoord", "login", "user", "profielfoto"];
-    const statsKeywords = ["stats", "statistieken", "data", "zettijd", "duur", "zetdata", "gemiddelde", "outlier", "agressief", "passief", "spelduur"];
+    let category = "general";
+    let recognized = true;
 
-    if (containsKeyword(lowercaseMessage, rulesKeywords)){
-        p.innerHTML = "Voor meer info over de regels kan je terecht op volgende pagina!";
-        a.href = "/html/spelregels.html";
-        a.innerHTML = "spelregels";
+    if (containsKeyword(lowercaseMessage, ["regels", "spelregels", "uitleg", "handleiding", "hoe speel ik", "pion", "beurt", "stapelen"])) {
+        createLink('/html/spelregels.html', "spelregels", article);
         category = "rules";
-    } else if (containsKeyword(lowercaseMessage, aboutUsKeywords)){
-        p.innerHTML = "Je kan zien wie de game ontwikkelt heeft op onze contact pagina ;)";
-        a.href = "/html/contact.html";
-        a.innerHTML = "over ons";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["alessandro", "lasha", "illia", "team", "ontwikkelaar", "makers", "wie", "contact"])) {
+        createLink('/html/contact.html', "over ons", article);
         category = "aboutUs";
-    } else if (containsKeyword(lowercaseMessage, aiKeywords)){
-        p.innerHTML = "Je kan meer info terug vinden over onze ai speler op volgende pagina, laat me zeker weten of je hem kon verslaan!";
-        a.href = "/html/aispeler.html";
-        a.innerHTML = "ai speler";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["ai", "computer", "tegenstander", "bot", "stefan", "alistair", "moeilijkheid"])) {
+        createLink('/html/aispeler.html', "ai speler", article);
         category = "ai";
-    } else if (containsKeyword(lowercaseMessage, databaseKeywords)){
-        p.innerHTML = "Voor databases hebben we 2 pagina's! 1 gaat over de implementatie en de andere het erd, ik geef je beide linkjes ;)";
-        a.href = "/html/database.html";
-        a.innerHTML = "implementatie";
-        extraLink.href = "/html/erd.html";
-        extraLink.innerHTML = "ERD";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["database", "sql", "query", "erd", "leaderboard", "postgresql"])) {
+        createLink('/html/database.html', "implementatie", article);
+        createLink('/html/erd.html', "ERD", article);
         category = "database";
-        appendExtraLink = true;
-    } else if (containsKeyword(lowercaseMessage, styleKeywords)){
-        p.innerHTML = "Ahhh onze ui! wist je al dat deze volledig zelf gemaakt is? Je kan hem hier bewonderen!";
-        a.href = "/html/fotogalerij.html";
-        a.innerHTML = "galerij";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["stijl", "thema", "pixel", "retro", "galerij", "look", "art"])) {
+        createLink('/html/fotogalerij.html', "galerij", article);
         category = "style";
-    } else if (containsKeyword(lowercaseMessage, gameLogicKeywords) || containsKeyword(lowercaseMessage, conceptualKeywords)){
-        p.innerHTML = "De logica en het ontwerp van de game kan natuurlijk niet ontbreken, die kan je vinden op deze pagina's!";
-        a.href = "/html/gamemodel.html";
-        a.innerHTML = "gamemodel";
-        extraLink.href = "/html/conceptualthinking.html";
-        extraLink.innerHTML = "conceptual";
-        appendExtraLink = true;
+    } 
+    else if (containsKeyword(lowercaseMessage, ["bord", "logica", "controller", "gamestatus", "diagram", "usecase", "ontwerp", "conceptueel"])) {
+        createLink('/html/gamemodel.html', "gamemodel", article);
+        createLink('/html/conceptualthinking.html', "conceptual", article);
         category = "logic";
-    } else if (containsKeyword(lowercaseMessage, infraKeywords)){
-        p.innerHTML = "Voor infra hebben we ook een pagina! lees hier alle stappen die we hebben genomen om bv deze webserver online te krijgen ;)";
-        a.href = "/html/infrastructure.html";
-        a.innerHTML = "infra";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["server", "ip", "ssh", "apache", "infra", "port 5432", "ssl"])) {
+        createLink('/html/infrastructure.html', "infra", article);
         category = "infra";
-    } else if (containsKeyword(lowercaseMessage, installKeywords)){
-        p.innerHTML = "Voor de hele installatie procedure kan je terecht op volgende pagina, check de vereisten en begin!";
-        a.href = "/html/installatiepagina.html";
-        a.innerHTML = "installatie";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["download", "installeren", "setup", "windows", "installer"])) {
+        createLink('/html/installatiepagina.html', "installatie", article);
         category = "install";
-    } else if (containsKeyword(lowercaseMessage, multiplayerKeywords)){
-        p.innerHTML = "Multiplayer is zeer belangrijk voor toffe games, hoe kan je anders tegen je vrienden spelen ;) hier is de link!";
-        a.href = "/html/multiplayer.html";
-        a.innerHTML = "multiplayer";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["online", "vrienden", "multiplayer", "lobby", "room_code"])) {
+        createLink('/html/multiplayer.html', "multiplayer", article);
         category = "multiplayer";
-    } else if (containsKeyword(lowercaseMessage, statsKeywords)){
-        p.innerHTML = "Benieuwd naar de cijfers achter de game? Check hier alle stats en move data!"; 
-        a.href = "/html/movedata.html";
-        a.innerHTML = "stats";
-        category = "stats"; 
-    } else if (containsKeyword(lowercaseMessage, accountKeywords)){
-        p.innerHTML = "Het lijkt erop dat je iets vraagt over accounts! Helaas is er geen pagina die hierover praat :/ mail de developers:";
-        a.href = "mailto:alessandro.dejongh@student.kdg.be,lasha.dularidze@student.kdg.be,illia.ramael@student.kdg.be";
-        a.innerHTML = "mail developers";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["stats", "statistieken", "data", "zettijd", "gemiddelde", "outlier"])) {
+        createLink('/html/movedata.html', "stats", article);
+        category = "stats";
+    } 
+    else if (containsKeyword(lowercaseMessage, ["account", "registreren", "inloggen", "login", "user"])) {
+        createLink('mailto:alessandro.dejongh@student.kdg.be', "mail alessandro", article);
+        createLink('mailto:lasha.dularidze@student.kdg.be', "mail lasha", article);
+        createLink('mailto:illia.ramael@student.kdg.be', "mail illia", article);
         category = "account";
-    } else {
-        p.innerHTML = "Sorry! ik heb je niet begrepen, kan je de vraag herformuleren? zoek je een pagina?";
-        appendLink = false;
+    } 
+    else {
         recognized = false;
     }
 
-    article.appendChild(p);
-    if(appendLink){
-        article.appendChild(a);
-    }
-    if(appendExtraLink){
-        article.appendChild(extraLink);
-    }
-    saveChatbotData(message,category,recognized);
+    saveChatbotData(message, category, recognized);
+}
+
+function createLink(link,message,article){
+    let a = document.createElement('a');
+    a.classList.add('pixel-box','chat-link');
+
+    a.innerHTML = message;
+    a.href = link;
+
+    article.appendChild(a);
+}
+
+async function chatWithGemini(message,article) {
+    const chatResponse = await fetch('geminiHandler.php', {
+        method: 'POST',
+        body: JSON.stringify({ message: message })
+    });
+    const chatData = await chatResponse.json();
+    const reply = chatData.candidates[0].content.parts[0].text;
+
+    showMessageAiOnScreen(reply,article);
 }
 
 function containsKeyword(message,keyWords){
@@ -163,6 +142,116 @@ function containsKeyword(message,keyWords){
     }
     return false;
 }
+
+
+
+// function handleAiResponse(message,article){
+//     let p = document.createElement('p');
+//     p.classList.add('pixel-box','system');
+
+//     let a = document.createElement('a');
+//     a.classList.add('pixel-box','chat-link');
+//     let extraLink = document.createElement('a');
+//     extraLink.classList.add('pixel-box','chat-link');
+
+//     let appendLink = true;
+//     let appendExtraLink = false;
+    
+//     let category = "";
+//     let recognized = true;
+
+//     const lowercaseMessage = message.toLowerCase();
+    
+//     const rulesKeywords = ["regels", "spelregels", "uitleg", "handleiding", "wetten", "hoe speel ik", "pion", "beurt", "winnaar", "verliezen", "zijwaarts", "voorwaarts", "eindrij", "pin", "stapelen"];
+//     const aiKeywords = ["ai", "computer", "tegenstander", "bot", "verslaan", "moeilijkheid", "stefan", "alistair", "easy", "medium", "hard", "elite", "decideturn", "diepte"];
+//     const conceptualKeywords = ["diagram", "usecase", "domeinmodel", "wireframe", "ontwerp", "conceptueel", "dcd", "ssd", "visueel", "schema"];
+//     const aboutUsKeywords = ["alessandro", "lasha", "illia", "team", "ontwikkelaar", "makers", "wie", "creatie", "contact", "studenten", "kdg", "project"];
+//     const databaseKeywords = ["database", "sql", "query", "tables", "relatie", "erd", "leaderboard", "scores", "gehasht", "postgresql", "game_participation", "tussentabel", "foreign key"];
+//     const styleKeywords = ["stijl", "thema", "pixel", "retro", "galerij", "foto", "look", "layout", "graphics", "art", "kleuren", "pawncolor"];
+//     const gameLogicKeywords = ["bord", "pawn", "peg", "zet", "beurt", "winnaar", "logica", "controller", "verloop", "appcontroller", "gamestatus", "undo", "legale zet"];
+//     const infraKeywords = ["server", "ip", "ssh", "apache", "validator", "cron", "backup", "https", "ssl", "infra", "port 5432", "certbot", "duckdns", "security"];
+//     const installKeywords = ["download", "installeren", "gratis", "setup", "ram", "systeemvereisten", "geheugen", "schijfruimte", "windows", "64-bit", "installer"];
+//     const multiplayerKeywords = ["online", "vrienden", "samen", "multiplayer", "spelers", "lobby", "join", "host", "guest", "room_code", "pollen", "synchronisatie"];
+//     const accountKeywords = ["account", "aanmelden", "registreren", "inloggen", "profiel", "wachtwoord", "login", "user", "profielfoto"];
+//     const statsKeywords = ["stats", "statistieken", "data", "zettijd", "duur", "zetdata", "gemiddelde", "outlier", "agressief", "passief", "spelduur"];
+
+//     if (containsKeyword(lowercaseMessage, rulesKeywords)){
+//         p.innerHTML = "Voor meer info over de regels kan je terecht op volgende pagina!";
+//         a.href = "/html/spelregels.html";
+//         a.innerHTML = "spelregels";
+//         category = "rules";
+//     } else if (containsKeyword(lowercaseMessage, aboutUsKeywords)){
+//         p.innerHTML = "Je kan zien wie de game ontwikkelt heeft op onze contact pagina ;)";
+//         a.href = "/html/contact.html";
+//         a.innerHTML = "over ons";
+//         category = "aboutUs";
+//     } else if (containsKeyword(lowercaseMessage, aiKeywords)){
+//         p.innerHTML = "Je kan meer info terug vinden over onze ai speler op volgende pagina, laat me zeker weten of je hem kon verslaan!";
+//         a.href = "/html/aispeler.html";
+//         a.innerHTML = "ai speler";
+//         category = "ai";
+//     } else if (containsKeyword(lowercaseMessage, databaseKeywords)){
+//         p.innerHTML = "Voor databases hebben we 2 pagina's! 1 gaat over de implementatie en de andere het erd, ik geef je beide linkjes ;)";
+//         a.href = "/html/database.html";
+//         a.innerHTML = "implementatie";
+//         extraLink.href = "/html/erd.html";
+//         extraLink.innerHTML = "ERD";
+//         category = "database";
+//         appendExtraLink = true;
+//     } else if (containsKeyword(lowercaseMessage, styleKeywords)){
+//         p.innerHTML = "Ahhh onze ui! wist je al dat deze volledig zelf gemaakt is? Je kan hem hier bewonderen!";
+//         a.href = "/html/fotogalerij.html";
+//         a.innerHTML = "galerij";
+//         category = "style";
+//     } else if (containsKeyword(lowercaseMessage, gameLogicKeywords) || containsKeyword(lowercaseMessage, conceptualKeywords)){
+//         p.innerHTML = "De logica en het ontwerp van de game kan natuurlijk niet ontbreken, die kan je vinden op deze pagina's!";
+//         a.href = "/html/gamemodel.html";
+//         a.innerHTML = "gamemodel";
+//         extraLink.href = "/html/conceptualthinking.html";
+//         extraLink.innerHTML = "conceptual";
+//         appendExtraLink = true;
+//         category = "logic";
+//     } else if (containsKeyword(lowercaseMessage, infraKeywords)){
+//         p.innerHTML = "Voor infra hebben we ook een pagina! lees hier alle stappen die we hebben genomen om bv deze webserver online te krijgen ;)";
+//         a.href = "/html/infrastructure.html";
+//         a.innerHTML = "infra";
+//         category = "infra";
+//     } else if (containsKeyword(lowercaseMessage, installKeywords)){
+//         p.innerHTML = "Voor de hele installatie procedure kan je terecht op volgende pagina, check de vereisten en begin!";
+//         a.href = "/html/installatiepagina.html";
+//         a.innerHTML = "installatie";
+//         category = "install";
+//     } else if (containsKeyword(lowercaseMessage, multiplayerKeywords)){
+//         p.innerHTML = "Multiplayer is zeer belangrijk voor toffe games, hoe kan je anders tegen je vrienden spelen ;) hier is de link!";
+//         a.href = "/html/multiplayer.html";
+//         a.innerHTML = "multiplayer";
+//         category = "multiplayer";
+//     } else if (containsKeyword(lowercaseMessage, statsKeywords)){
+//         p.innerHTML = "Benieuwd naar de cijfers achter de game? Check hier alle stats en move data!"; 
+//         a.href = "/html/movedata.html";
+//         a.innerHTML = "stats";
+//         category = "stats"; 
+//     } else if (containsKeyword(lowercaseMessage, accountKeywords)){
+//         p.innerHTML = "Het lijkt erop dat je iets vraagt over accounts! Helaas is er geen pagina die hierover praat :/ mail de developers:";
+//         a.href = "mailto:alessandro.dejongh@student.kdg.be,lasha.dularidze@student.kdg.be,illia.ramael@student.kdg.be";
+//         a.innerHTML = "mail developers";
+//         category = "account";
+//     } else {
+//         p.innerHTML = "Sorry! ik heb je niet begrepen, kan je de vraag herformuleren? zoek je een pagina?";
+//         appendLink = false;
+//         recognized = false;
+//     }
+
+//     article.appendChild(p);
+//     if(appendLink){
+//         article.appendChild(a);
+//     }
+//     if(appendExtraLink){
+//         article.appendChild(extraLink);
+//     }
+//     saveChatbotData(message,category,recognized);
+// }
+
 
 
 
