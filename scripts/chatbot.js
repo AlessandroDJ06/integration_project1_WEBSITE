@@ -30,18 +30,6 @@ async function handleSubmit(event){
     
 }
 
-async function saveChatbotData(message,category,recognized){
-    await fetch("/savedata.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ 
-        message: message,
-        category: category,
-        recognized: recognized
-    }),
-    });
-}
-
 function showMessageUserOnScreen(message,article){
     let p = document.createElement('p');
     p.innerHTML = message;
@@ -112,15 +100,8 @@ async function showMessageAiOnScreen(message, article, p) {
             createLink('mailto:illia.ramael@student.kdg.be', "mail illia", article);
             category = "account";
         } 
-        else {
-            recognized = false;
-        }
-
-        saveChatbotData(message, category, recognized);
         return;
     }
-
-
 
 }
 
@@ -134,6 +115,15 @@ function createLink(link,message,article,p){
     article.appendChild(a);
 }
 
+function containsKeyword(message,keyWords){
+    for (keyWord of keyWords){
+        if(message.includes(keyWord)){
+            return true;
+        }
+    }
+    return false;
+}
+
 async function handleAiResponse(message,article,p) {
     const chatResponse = await fetch('/geminihandler.php', {
         method: 'POST',
@@ -142,14 +132,17 @@ async function handleAiResponse(message,article,p) {
     const chatData = await chatResponse.json();
     const reply = chatData.candidates[0].content.parts[0].text;
 
-      showMessageAiOnScreen(reply,article,p);
+    showMessageAiOnScreen(reply,article,p);
+    saveChatbotData(message,reply);
 }
 
-function containsKeyword(message,keyWords){
-    for (keyWord of keyWords){
-        if(message.includes(keyWord)){
-            return true;
-        }
-    }
-    return false;
+async function saveChatbotData(message,response){
+    await fetch("/savedata.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+        message: message,
+        response: response
+    }),
+    });
 }

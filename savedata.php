@@ -2,15 +2,14 @@
 header("Content-Type: application/json");
 $data = json_decode(file_get_contents("php://input"), true);
 
-$bestand = __DIR__ . "/chatbotData.json";
-$gesprek = file_exists($bestand) ? json_decode(file_get_contents($bestand), true) : [];
+$file = __DIR__ . "/chatbotdata.json";
+$conversation = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
 
-$gesprek[] = [
+$conversation[] = [
   "message" => $data["message"],
-  "category" => $data["category"],
-  "recognized" => $data["recognized"]
+  "response" => $data["response"]
 
 ];
 
-file_put_contents($bestand, json_encode($gesprek, JSON_PRETTY_PRINT));
+file_put_contents($file, json_encode($conversation, JSON_PRETTY_PRINT));
 echo json_encode(["succes" => true]);
