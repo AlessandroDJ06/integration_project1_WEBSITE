@@ -53,7 +53,7 @@ function showMessageAiOnScreen(message, article) {
     p.classList.add('pixel-box', 'system');
     article.appendChild(p);
 
-    let aiAnswer = handleAiResponse(message);
+    let aiAnswer = await handleAiResponse(message);
     p.innerHTML = aiAnswer;
 
     const lowercaseMessage = message.toLowerCase();
