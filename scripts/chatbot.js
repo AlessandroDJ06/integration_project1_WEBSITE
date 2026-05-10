@@ -18,11 +18,11 @@ function toggleChat() {
     }
 }
 
-function handleSubmit(event){
+async function handleSubmit(event){
     let message = document.querySelector('#question').value;
     let article = document.querySelector('.chat-body');
     showMessageUserOnScreen(message,article);
-    let p = showMessageAiOnScreen(message,article,null);
+    let p = await showMessageAiOnScreen(message,article,null);
     handleAiResponse(message,article,p);
 
     document.querySelector('#question').value = '';
