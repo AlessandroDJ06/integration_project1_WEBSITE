@@ -30,7 +30,7 @@ function handleSubmit(event){
 }
 
 async function saveChatbotData(message,category,recognized){
-    await fetch("/saveData.php", {
+    await fetch("/savedata.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
@@ -124,7 +124,7 @@ function createLink(link,message,article){
 }
 
 async function chatWithGemini(message,article) {
-    const chatResponse = await fetch('geminiHandler.php', {
+    const chatResponse = await fetch('/geminihandler.php', {
         method: 'POST',
         body: JSON.stringify({ message: message })
     });
