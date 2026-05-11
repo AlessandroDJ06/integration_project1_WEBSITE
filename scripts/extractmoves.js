@@ -1,6 +1,23 @@
+window.addEventListener('load',handleInit);
+
+function handleInit(){
+    getMoveData();
+    document.getElementById("moveDataBtn").addEventListener("click", getMoveData);
+}
+
+
 function getMoveData() {
     loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
+        const sortValue = document.getElementById('sortOrder').value;
+
+        if (sortValue == "player"){
+            data = sortDataByName(data);
+        } else if (sortValue == "duration"){
+            data = sortDataByDuration(data);
+        } else if (sortValue == "game"){
+            data = sortDataByDate(data);
+        }
         
         let rows = []; 
         
@@ -23,6 +40,35 @@ function getMoveData() {
         tableBody.insertAdjacentHTML('beforeend', rows.join(''));
     });
 }
+
+function sortDataByName(data){
+    data.sort((a,b) => a.player.localeCompare(b.player));
+}
+
+// function sortDataByDuration(){
+
+// }
+
+// function sortDataByDate(){
+
+// }
+
+
+// function getDataByUsername(){
+
+// }
+
+// function getPlayerWithMostMoves(){
+
+// }
+
+// function getAverageMoveDuration(){
+
+// }
+
+// function getTotalMoves(){
+
+// }
 
 
 function loadJsonFile(jsonFileUrl, callback) {
@@ -47,5 +93,3 @@ function roundDuration(duration){
     return Math.round(duration * 100) / 100;
 }
 
-getMoveData();
-document.getElementById("moveDataBtn").addEventListener("click", getMoveData);

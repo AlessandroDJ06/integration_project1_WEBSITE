@@ -39,7 +39,7 @@ article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer for
 
 #menu li a, body, .pixel-button.primary, .spelverloop-lijst p.model-stap,
 tbody tr:hover td, th, h4, code,
-.chat-header h4, .close-btn, .chat-footer input {
+.chat-header h4, .close-btn, .chat-footer input,.feature-card a:hover,.chat-body p,.chat-body a.chat-link {
     color: var(--color-gold);
 }
 
@@ -238,9 +238,6 @@ section {
     margin-top: 15px;
 }
 
-.feature-card a:hover {
-    color: var(--color-gold);
-}
 
 .flex-column-container{
     display: flex;
@@ -345,7 +342,6 @@ section {
     font-size: 0.55rem;
     padding: 8px 12px;
     margin: 0;            
-    color: var(--color-gold);
 }
 
 .chat-body p.system {
@@ -363,7 +359,6 @@ section {
     padding: 8px 12px;
     text-align: center;
     text-decoration: none;
-    color: var(--color-gold);
     font-size: 0.5rem;
     width: fit-content;
     align-self: center;   

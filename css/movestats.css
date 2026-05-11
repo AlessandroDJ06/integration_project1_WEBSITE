@@ -43,3 +43,11 @@ button{
     font-size: 0.1rem;
     margin-bottom: 15px;
 }
+
+select,option{
+    color: var(--color-gold);
+    font-family: "PressStart2P", monospace;
+    font-size: 0.8em;
+}
+
+
