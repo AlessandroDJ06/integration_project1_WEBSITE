@@ -11,12 +11,19 @@ function getMoveData() {
         const tableBody = document.getElementById('game-data');
         const sortValue = document.getElementById('sortOrder').value;
 
-        if (sortValue == "player"){
-            data = sortDataByName(data);
-        } else if (sortValue == "duration"){
-            data = sortDataByDuration(data);
-        } else if (sortValue == "game"){
-            data = sortDataByDate(data);
+        
+        if (sortValue == "playerAsc"){
+            data = sortDataByName(data,true);
+        }else if (sortValue == "playerDesc"){
+            data = sortDataByName(data,false)
+        } else if (sortValue == "durationAsc"){
+            data = sortDataByDuration(data,true);
+        }else if (sortValue == "durationDesc"){
+            data = sortDataByDuration(data,false);
+        }else if (sortValue == "gameAsc"){
+            data = sortDataByDate(data,true);
+        } else if (sortValue == "gameDesc"){
+            data = sortDataByDate(data,false);
         }
         
         let rows = []; 
@@ -41,17 +48,32 @@ function getMoveData() {
     });
 }
 
-function sortDataByName(data){
-    return data.sort((a,b) => a.player.localeCompare(b.player));
+function sortDataByName(data,orderAsc){
+    if(orderAsc){
+        return data.sort((a,b) => a.player.localeCompare(b.player));
+    } else {
+        return data.sort((a,b) => b.player.localeCompare(a.player));
+    }
+    
 }
 
-// function sortDataByDuration(){
+function sortDataByDuration(data,orderAsc){
+    if(orderAsc){
+        return data.sort((a,b) => a.duration - b.duration);
+    } else {
+        return data.sort((a,b) => b.duration - a.duration);
+    }
+    
+}
 
-// }
-
-// function sortDataByDate(){
-
-// }
+function sortDataByDate(data,orderAsc){
+    if (orderAsc){
+        return data.sort((a,b) => new Date(a.game) - new Date(b.game));
+    }else{
+        return data.sort((a,b) => new Date(b.game) - new Date(a.game));
+    }
+   
+}
 
 
 // function getDataByUsername(){

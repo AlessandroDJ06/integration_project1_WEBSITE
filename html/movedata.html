@@ -51,9 +51,13 @@
             <h2>Move Data</h2>
             <label for="sortOrder">Sorteer op:</label>
             <select id="sortOrder" class="pixel-box">
-                <option value="player">Speler (A-Z)</option>
-                <option value="duration">Duur (Kort-Lang)</option>
-                <option value="game" >Datum (Oud-Nieuw)</option>
+                <option value="default"></option>
+                <option value="playerAsc">Speler (A-Z)</option>
+                <option value="playerDesc">Speler (Z-A)</option>
+                <option value="durationAsc">Duur (Kort-Lang)</option>
+                <option value="durationDesc">Duur (Lang-Kort)</option>
+                <option value="gameAsc" >Datum (Oud-Nieuw)</option>
+                <option value="gameDesc" >Datum (Nieuw-Oud)</option>
             </select>
             <button class="pixel-button primary" id="moveDataBtn">refresh</button>
             <table>
