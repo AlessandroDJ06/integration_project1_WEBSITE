@@ -42,7 +42,7 @@ function getMoveData() {
 }
 
 function sortDataByName(data){
-    data.sort((a,b) => a.player.localeCompare(b.player));
+    return data.sort((a,b) => a.player.localeCompare(b.player));
 }
 
 // function sortDataByDuration(){
