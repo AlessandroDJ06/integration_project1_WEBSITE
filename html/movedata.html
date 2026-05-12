@@ -49,19 +49,24 @@
     <main>
         <article class="pixel-box">
             <h2>Move Data</h2>
-            <label for="sortOrder">Sorteer op:</label>
-            <select id="sortOrder" class="pixel-box">
-                <option value="default">normaal</option>
-                <option value="playerAsc">Speler (A-Z)</option>
-                <option value="playerDesc">Speler (Z-A)</option>
-                <option value="durationAsc">Duur (Kort-Lang)</option>
-                <option value="durationDesc">Duur (Lang-Kort)</option>
-                <option value="gameAsc" >Datum (Oud-Nieuw)</option>
-                <option value="gameDesc" >Datum (Nieuw-Oud)</option>
-            </select>
-            <label for="searchInput">Zoeken:</label>
-            <input type="text" id="searchInput" class="pixel-box" placeholder="Typ speler of move...">
-            <button class="pixel-button primary" id="moveDataBtn">refresh</button>
+            <section class="flex-column-container">
+                <h2 class="hidden-title">sorteercriteria</h2>
+                <label for="sortOrder">Sorteer op:</label>
+                <select id="sortOrder" class="pixel-box">
+                    <option value="default">normaal</option>
+                    <option value="playerAsc">Speler (A-Z)</option>
+                    <option value="playerDesc">Speler (Z-A)</option>
+                    <option value="durationAsc">Duur (Kort-Lang)</option>
+                    <option value="durationDesc">Duur (Lang-Kort)</option>
+                    <option value="gameAsc" >Datum (Oud-Nieuw)</option>
+                    <option value="gameDesc" >Datum (Nieuw-Oud)</option>
+                </select>
+                <label for="searchInput">Zoeken op naam:</label>
+                <input type="text" id="searchInput" class="pixel-box" placeholder="typ spelernaam...">
+                <button class="pixel-button primary" id="moveDataBtn">refresh</button>
+            </section>
+
+            
             <table>
                 <thead >
                     <tr>

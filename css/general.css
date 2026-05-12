@@ -95,7 +95,7 @@ button, body {
 
 .pixel-box,
 .pixel-button,
-#menu .submenu ul {
+#menu .submenu ul{
     border: none;
     box-shadow:
         -3px  0   0 0 var(--color-gold),
