@@ -7,7 +7,7 @@ function handleInit(){
 
 
 function getMoveData() {
-        loadJsonFile('../game.json', function(data) {
+    loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
         const sortValue = document.getElementById('sortOrder').value;
         let searchByName = false;
