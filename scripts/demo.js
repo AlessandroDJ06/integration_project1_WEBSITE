@@ -8,6 +8,11 @@ launchBtn.addEventListener('click', async () => {
     loadingMsg.classList.remove('demo-hidden');
     demoContainer.classList.remove('demo-hidden');
 
-    await cheerpjInit();
+    await cheerpjInit({
+        clipboardMode: "system",
+        scalingFactor: window.devicePixelRatio,
+        displayCanvas: document.getElementById('cheerpjDisplay')
+    });
+
     await cheerpjRunJar("/demo/zaroc-demo.jar");
 });
