@@ -1,2 +1,13 @@
 RedirectMatch 404 /\.git
+# dit zorgt ervoor dat niemand aan onze gemini api key kan
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 
+
+# dit zorgt ervoor dat er privacy is voor de vragen die aan de chatbot worden gesteld
+<Files "chatbotData.json">
+    Order allow,deny
+    Deny from all
+</Files>

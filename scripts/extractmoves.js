@@ -1,13 +1,43 @@
+window.addEventListener('load',handleInit);
+
+function handleInit(){
+    getMoveData();
+    document.getElementById("moveDataBtn").addEventListener("click", getMoveData);
+}
+
+
 function getMoveData() {
     loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
+        const sortValue = document.getElementById('sortOrder').value;
+        const searchElement = document.getElementById('searchInput');
+        
+        let searchName = "";
+        let searchByName = false;
+        
+        if(searchElement && searchElement.value.trim() !== ""){
+            searchByName = true;
+            searchName = searchElement.value.toLowerCase();
+        }
+
+        if (sortValue == "playerAsc") data = sortDataByName(data,true);
+        else if (sortValue == "playerDesc") data = sortDataByName(data,false);
+        else if (sortValue == "durationAsc") data = sortDataByDuration(data,true);
+        else if (sortValue == "durationDesc") data = sortDataByDuration(data,false);
+        else if (sortValue == "gameAsc") data = sortDataByDate(data,true);
+        else if (sortValue == "gameDesc") data = sortDataByDate(data,false);
         
         let rows = []; 
         
         for (let i = 0; i < data.length; i++) {
             let row = data[i];
-            let rowClass = row.outlier === 'X' ? " class='outlier'" : "";
+            
+    
+            if (searchByName && !row.player.toLowerCase().includes(searchName)) {
+                continue; 
+            }
 
+            let rowClass = row.outlier === 'X' ? " class='outlier'" : "";
             let tr = `<tr${rowClass}>
                 <td>${row.player}</td>
                 <td>${formatDate(row.game)}</td>
@@ -16,13 +46,56 @@ function getMoveData() {
                 <td>${roundDuration(row.duration)}</td>
                 <td>${row.outlier || ""}</td>
             </tr>`;
-
+            
             rows.push(tr);
         }
-        tableBody.innerHTML = "";
-        tableBody.insertAdjacentHTML('beforeend', rows.join(''));
+        tableBody.innerHTML = rows.join('');
     });
 }
+
+function sortDataByName(data,orderAsc){
+    if(orderAsc){
+        return data.sort((a,b) => a.player.localeCompare(b.player));
+    } else {
+        return data.sort((a,b) => b.player.localeCompare(a.player));
+    }
+    
+}
+
+function sortDataByDuration(data,orderAsc){
+    if(orderAsc){
+        return data.sort((a,b) => a.duration - b.duration);
+    } else {
+        return data.sort((a,b) => b.duration - a.duration);
+    }
+    
+}
+
+function sortDataByDate(data,orderAsc){
+    if (orderAsc){
+        return data.sort((a,b) => new Date(a.game) - new Date(b.game));
+    }else{
+        return data.sort((a,b) => new Date(b.game) - new Date(a.game));
+    }
+   
+}
+
+
+// function getDataByUsername(){
+
+// }
+
+// function getPlayerWithMostMoves(){
+
+// }
+
+// function getAverageMoveDuration(){
+
+// }
+
+// function getTotalMoves(){
+
+// }
 
 
 function loadJsonFile(jsonFileUrl, callback) {
@@ -47,5 +120,3 @@ function roundDuration(duration){
     return Math.round(duration * 100) / 100;
 }
 
-getMoveData();
-document.getElementById("moveDataBtn").addEventListener("click", getMoveData);

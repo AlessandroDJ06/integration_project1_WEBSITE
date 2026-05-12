@@ -43,3 +43,29 @@ button{
     font-size: 0.1rem;
     margin-bottom: 15px;
 }
+
+select,option,input{
+    color: var(--color-gold);
+    font-family: "PressStart2P", monospace;
+    font-size: 0.8em;
+}
+
+
+select,input{
+    max-height: max-content;
+    width: 100%;
+    max-width: 40%;
+}
+
+.flex-column-container{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+section > .pixel-box{
+    filter: none;
+}
+
+
+
