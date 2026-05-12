@@ -10,36 +10,34 @@ function getMoveData() {
     loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
         const sortValue = document.getElementById('sortOrder').value;
-        let searchByName = false;
+        const searchElement = document.getElementById('searchInput');
+        
         let searchName = "";
+        let searchByName = false;
         
-        if(document.getElementById(searchInput).value != " "){
+        if(searchElement && searchElement.value.trim() !== ""){
             searchByName = true;
-            searchName = document.getElementById(searchInput).value;
+            searchName = searchElement.value.toLowerCase();
         }
-        
 
-        
-        if (sortValue == "playerAsc"){
-            data = sortDataByName(data,true);
-        }else if (sortValue == "playerDesc"){
-            data = sortDataByName(data,false)
-        } else if (sortValue == "durationAsc"){
-            data = sortDataByDuration(data,true);
-        }else if (sortValue == "durationDesc"){
-            data = sortDataByDuration(data,false);
-        }else if (sortValue == "gameAsc"){
-            data = sortDataByDate(data,true);
-        } else if (sortValue == "gameDesc"){
-            data = sortDataByDate(data,false);
-        }
+        if (sortValue == "playerAsc") data = sortDataByName(data,true);
+        else if (sortValue == "playerDesc") data = sortDataByName(data,false);
+        else if (sortValue == "durationAsc") data = sortDataByDuration(data,true);
+        else if (sortValue == "durationDesc") data = sortDataByDuration(data,false);
+        else if (sortValue == "gameAsc") data = sortDataByDate(data,true);
+        else if (sortValue == "gameDesc") data = sortDataByDate(data,false);
         
         let rows = []; 
         
         for (let i = 0; i < data.length; i++) {
             let row = data[i];
-            let rowClass = row.outlier === 'X' ? " class='outlier'" : "";
+            
+    
+            if (searchByName && !row.player.toLowerCase().includes(searchName)) {
+                continue; 
+            }
 
+            let rowClass = row.outlier === 'X' ? " class='outlier'" : "";
             let tr = `<tr${rowClass}>
                 <td>${row.player}</td>
                 <td>${formatDate(row.game)}</td>
@@ -48,18 +46,10 @@ function getMoveData() {
                 <td>${roundDuration(row.duration)}</td>
                 <td>${row.outlier || ""}</td>
             </tr>`;
-
-            if (searchByName){
-                if (row.player == enteredName){
-                    rows.push(tr);
-                }
-            } else {
-                rows.push(tr);
-            }
             
+            rows.push(tr);
         }
-        tableBody.innerHTML = "";
-        tableBody.insertAdjacentHTML('beforeend', rows.join(''));
+        tableBody.innerHTML = rows.join('');
     });
 }
 
