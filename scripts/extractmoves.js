@@ -7,9 +7,17 @@ function handleInit(){
 
 
 function getMoveData() {
-    loadJsonFile('../game.json', function(data) {
+        loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
         const sortValue = document.getElementById('sortOrder').value;
+        let searchByName = false;
+        let searchName = "";
+        
+        if(document.getElementById(searchInput).value != " "){
+            searchByName = true;
+            searchName = document.getElementById(searchInput).value;
+        }
+        
 
         
         if (sortValue == "playerAsc"){
@@ -41,7 +49,14 @@ function getMoveData() {
                 <td>${row.outlier || ""}</td>
             </tr>`;
 
-            rows.push(tr);
+            if (searchByName){
+                if (row.player == enteredName){
+                    rows.push(tr);
+                }
+            } else {
+                rows.push(tr);
+            }
+            
         }
         tableBody.innerHTML = "";
         tableBody.insertAdjacentHTML('beforeend', rows.join(''));
