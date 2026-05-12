@@ -11,7 +11,8 @@ launchBtn.addEventListener('click', async () => {
     await cheerpjInit({
         clipboardMode: "system",
         scalingFactor: window.devicePixelRatio,
-        displayCanvas: document.getElementById('cheerpjDisplay')
+        displayCanvas: document.getElementById('cheerpjDisplay'),
+        javaHome: "https://cjrtnc.leaningtech.com/3.0/jre"
     });
 
     await cheerpjRunJar("/demo/zaroc-demo.jar");
