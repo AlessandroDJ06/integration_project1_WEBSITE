@@ -2,7 +2,7 @@ window.addEventListener('load',handleInit);
 
 function handleInit() {
     let sessionId = checkSessionId();
-    logCurrentPage(sessionId,window.location.href);
+    logCurrentPage(sessionId,window.location.pathname);
     updateAllLinks(sessionId);
 }
 
