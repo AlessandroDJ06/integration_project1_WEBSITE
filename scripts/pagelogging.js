@@ -11,12 +11,12 @@ function checkSessionId(){
     let sid = urlParams.get('session_id');
 
     if (!sid) {
-        sid = localStorage.getItem('project_sid');
+        sid = sessionStorage.getItem('project_sid');
     }
 
     if (!sid) {
-        sid = 'sess_' + Date.now() + Math.random().toString(36).substr(2, 5);
-        localStorage.setItem('project_sid', sid);
+        sid = createSessionId()
+        sessionStorage.setItem('project_sid', sid);
     }
 
     return sid;
