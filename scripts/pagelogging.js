@@ -27,7 +27,7 @@ function createSessionId(){
 }
 
 function logCurrentPage(sessionId,page) {
-    fetch('savepagedata.php', {
+    fetch('/savepagedata.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
