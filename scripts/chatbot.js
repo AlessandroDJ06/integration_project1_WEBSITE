@@ -3,7 +3,7 @@ window.addEventListener('load',handleInit);
 function handleInit(){
     document.getElementById("toggleChat").addEventListener("click", toggleChat);
     document.getElementById("chatBtn").addEventListener("click", toggleChat);
-    document.getElementById("suggestion").addEventListener("click",loadJsonFile('/final_association_rules.json',getPageSuggestion));
+    document.getElementById("suggestion").addEventListener("click",handleSuggestionClick);
     document.querySelector("form").addEventListener('submit',handleSubmit)
 }
 function toggleChat() {
@@ -29,6 +29,10 @@ async function handleSubmit(event){
     document.querySelector('#question').value = '';
     event.preventDefault();
     
+}
+
+function handleSuggestionClick(){
+    loadJsonFile('/final_association_rules.json',getPageSuggestion)
 }
 
 function showMessageUserOnScreen(message,article){
@@ -153,14 +157,12 @@ function getPageSuggestion(data){
     let suggestionPages = [];
     const article = getArticle();
 
-    for(rule of data){
-        for(antecedent of rule.antecedents){
-            if(currentPage == antecedent){
-                for(consequent of antecedent.consequents){
-                    for(suggestion of suggestionPages){
-                        if(consequent !== suggestion){
-                            suggestionPages.push(consequent);
-                        }
+    for (rule of data) {
+        for (antecedent of rule.antecedents) {
+            if (currentPage == antecedent) {
+                for (consequent of rule.consequents) {
+                    if (!suggestionPages.includes(consequent)) {
+                        suggestionPages.push(consequent);
                     }
                 }
             }
