@@ -16,7 +16,7 @@
     font-style: normal;
 }
 
-main, header,
+main,header,
 #menu .submenu:hover ul {
     display: flex;
 }
@@ -33,7 +33,7 @@ header, main, nav #menu li a, footer {
 }
 
 #menu li, header, main, nav, #menu, footer, article, img, .infra-tabel, .backup-stappen, .https-stappen, table,
-article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body {
+article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body,.pixel-box {
     width: 100%;
 }
 
@@ -45,7 +45,7 @@ tbody tr:hover td, th, h4, code,
 
 body, #menu ul, #menu li, article,
 .chat-window, .chat-body, .chat-footer,
-.chat-footer form, .chat-footer input {
+.chat-footer form, .chat-footer input,main,footer {
     box-sizing: border-box;
 }
 
