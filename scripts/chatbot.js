@@ -170,7 +170,14 @@ function getPageSuggestion(data){
     }
 
     let p = document.createElement('p');
-    p.innerHTML = "Hieronder vindt je een (paar) suggestie(s) op basis van historische data!";
+    if(suggestionPages.length == 0){
+        p.innerHTML = "Helaas kon er voor deze pagina geen suggestie gegeven worden :/ onze excuses!";
+    } else if (suggestionPages.length == 1){
+        p.innerHTML = "Hieronder vindt je een suggestie op basis van historische data!";
+    } else {
+        p.innerHTML = "Hieronder vindt je een paar suggesties op basis van historische data!";
+    }
+    
     p.classList.add('pixel-box','system');
     article.appendChild(p);
 
