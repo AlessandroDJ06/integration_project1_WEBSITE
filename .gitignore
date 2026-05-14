@@ -1,2 +1,5 @@
 .env
-chatbotData.json
+chatbotdata.json
+game.json
+navigation_logs.json
+images/demo/
