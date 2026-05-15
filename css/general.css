@@ -28,7 +28,7 @@ code {
     border-radius: 4px;
 }
 
-header, main, nav #menu li a, footer {
+header, main, nav #menu li a, footer, .centered-text {
     text-align: center;
 }
 
@@ -57,7 +57,7 @@ header, main {
     flex-direction: column;
 }
 
-header, main, .chat-window, .chat-header, .chat-button {
+header, main, .chat-window, .chat-header, .chat-button, .center-aligned-card {
     align-items: center;
 }
 

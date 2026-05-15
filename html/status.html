@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ZAROC - Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAROC - Status</title>
     <link rel="shortcut icon" href="../images/zaroc.png">
     <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/demo.css">
-    <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
-    <script defer src="../scripts/chatbot.js"></script>
-    <script defer src="../scripts/demo.js"></script>
-    <script defer src="../scripts/pagelogging.js"></script>
+    <link rel="stylesheet" href="../css/status.css">
+    <script defer src="/scripts/chatbot.js"></script>
+    <script defer src="../scripts/load-data.js"></script>
+    <script defer src="../scripts/status.js"></script>
+    <script defer src="/scripts/pagelogging.js"></script>
 </head>
 <body>
 <header>
@@ -50,37 +50,18 @@
 
 <main>
     <article class="pixel-box">
-        <h2>Speel de Demo</h2>
-        <p>Probeer Zaroc rechtstreeks in je browser! De demo laadt de volledige JavaFX applicatie via CheerpJ.
-        </p>
+        <h2>Validatie Status</h2>
+
+
+        <section class="flex-column-container center-aligned-card" id="validationResults">
+            <h3 class="hidden-title">Resultaten</h3>
+        </section>
+
+        <button class="pixel-button primary" id="refreshBtn">Herlaad</button>
     </article>
-
-    <section id="demo-launch" class="pixel-box">
-        <h2>Start de demo</h2>
-        <p>Klik op de knop hieronder om de Zaroc demo te starten. De eerste keer kan het even duren om te laden.</p>
-        <button id="launch-btn" class="pixel-button primary" type="button">&#9654; SPEEL NU</button>
-        <p id="loading-msg" class="demo-hidden">De demo wordt geladen, even geduld...</p>
-    </section>
-
-    <section id="demo-container" class="demo-hidden">
-        <h2 class="hidden-title">Demo venster</h2>
-        <canvas id="cheerpjDisplay"></canvas>
-    </section>
-
-    <section class="flex-container">
-        <h2 class="hidden-title">Demo informatie</h2>
-        <article class="pixel-box feature-card">
-            <h3>Wat kan je doen?</h3>
-            <p>In de demo kan je spelen tegen een AI-tegenstander of lokaal tegen een vriend. Daarnaast zijn alle
-                thema's en instellingen beschikbaar.</p>
-        </article>
-        <article class="pixel-box feature-card">
-            <h3>Wat is uitgeschakeld?</h3>
-            <p>Inloggen, statistieken, unfinished games en online multiplayer zijn niet beschikbaar zonder account.
-                Daarvoor moet je de game downloaden.</p>
-        </article>
-    </section>
 </main>
+
+
 
 <aside class="chat-container flex-column-container">
     <h2 class="hidden-title">chatbot</h2>
@@ -91,8 +72,8 @@
         </header>
         <article class="chat-body flex-column-container">
             <h4 class="hidden-title">chatberichten</h4>
-            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze
-                website! zoek je een pagina?</p>
+            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze website! zoek je een pagina?</p>
+            <button type="button" class="pixel-box chat-link" id="suggestion">suggestie</button>
         </article>
         <footer class="chat-footer">
             <form class="flex-container">
@@ -101,9 +82,7 @@
             </form>
         </footer>
     </section>
-    <button class="pixel-button primary chat-button flex-container" id="chatBtn" aria-label="Open Chat">
-        ?
-    </button>
+    <button class="pixel-button primary chat-button flex-container" id="chatBtn" aria-label="Open Chat">?</button>
 </aside>
 
 <footer class="pixel-box">
