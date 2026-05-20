@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ZAROC - Het team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAROC - Status</title>
     <link rel="shortcut icon" href="../images/zaroc.png">
     <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/status.css">
     <script defer src="/scripts/chatbot.js"></script>
+    <script defer src="../scripts/load-data.js"></script>
+    <script defer src="../scripts/status.js"></script>
     <script defer src="/scripts/pagelogging.js"></script>
-
 </head>
 <body>
 <header>
@@ -40,46 +42,26 @@
                     <li><a href="../html/status.html">Status</a></li>
                 </ul>
             </li>
-
             <li><a href="../html/contact.html">Contact</a></li>
             <li><a href="../html/fotogalerij.html">Foto galerij</a></li>
-
         </ul>
     </nav>
 </header>
 
 <main>
-    <article class="naamkaart flex-container centered-card">
-        <h2 class="hidden-title">Het team</h2>
-        <section class="pixel-box feature-card">
-            <img src="../images/alessandro.png" alt="Foto van Alessandro De Jongh" class="circle-img"/>
-            <h3>Alessandro</h3>
-            <p class="job-titel">Quality controle</p>
-            <p class="flavour-text">Zorgt ervoor dat het werk aan alle standaarden voldoet.</p>
-            <a href="https://gitlab.com/AlessandroDJ06.2" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/AlessandroDJ06/" target="_blank" rel="noopener noreferrer">GitHub ></a>
+    <article class="pixel-box">
+        <h2>Validatie Status</h2>
+
+
+        <section class="flex-column-container center-aligned-card" id="validationResults">
+            <h3 class="hidden-title">Resultaten</h3>
         </section>
 
-        <section class="pixel-box feature-card">
-            <img src="../images/lasha.png" alt="Foto van Lasha Dularidze" class="circle-img"/>
-            <h3>Lasha</h3>
-            <p class="job-titel">SPOC</p>
-            <p class="flavour-text">Zorgt ervoor dat alle officiële communicate vlot verloopt.</p>
-            <a href="https://gitlab.com/lasha.dularidze" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/DevLasha" target="_blank" rel="noopener noreferrer">GitHub ></a>
-        </section>
-        <section class="pixel-box feature-card">
-            <img src="../images/illia.png" alt="Foto van Illia Ramael" class="circle-img"/>
-            <h3>Illia</h3>
-            <p class="job-titel">Trello master</p>
-            <p class="flavour-text">Zorgt ervoor dat het trello board up-to-date blijft en wordt gedocumenteerd.</p>
-            <a href="https://gitlab.com/IlliaR_2007" target="_blank" rel="noopener noreferrer">GitLab ></a>
-            <a href="https://github.com/IlliaR2007" target="_blank" rel="noopener noreferrer">GitHub ></a>
-        </section>
+        <button class="pixel-button primary" id="refreshBtn">Herlaad</button>
     </article>
-
-
 </main>
+
+
 
 <aside class="chat-container flex-column-container">
     <h2 class="hidden-title">chatbot</h2>
@@ -88,13 +70,11 @@
             <h3>Orzac : AI assistent</h3>
             <button type="button" class="close-btn" id="toggleChat">×</button>
         </header>
-        
         <article class="chat-body flex-column-container">
             <h4 class="hidden-title">chatberichten</h4>
-            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze website! zoek je een pagina? </p>
+            <p class="pixel-box system">Hey daar! waar kan ik je mee helpen? Mijn specialiteit is je rondeleiden op deze website! zoek je een pagina?</p>
             <button type="button" class="pixel-box chat-link" id="suggestion">suggestie</button>
         </article>
-        
         <footer class="chat-footer">
             <form class="flex-container">
                 <input id="question" placeholder="Typ..." aria-label="Bericht">
@@ -102,11 +82,8 @@
             </form>
         </footer>
     </section>
-    <button class="pixel-button primary chat-button flex-container" id="chatBtn" aria-label="Open Chat">
-        ?
-    </button>
+    <button class="pixel-button primary chat-button flex-container" id="chatBtn" aria-label="Open Chat">?</button>
 </aside>
-
 
 <footer class="pixel-box">
     <p>&copy; 2026 ZAROC Game. INF102 - T01</p>

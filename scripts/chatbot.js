@@ -3,6 +3,7 @@ window.addEventListener('load',handleInit);
 function handleInit(){
     document.getElementById("toggleChat").addEventListener("click", toggleChat);
     document.getElementById("chatBtn").addEventListener("click", toggleChat);
+    document.getElementById("suggestion").addEventListener("click",handleSuggestionClick);
     document.querySelector("form").addEventListener('submit',handleSubmit)
 }
 function toggleChat() {
@@ -20,7 +21,7 @@ function toggleChat() {
 
 async function handleSubmit(event){
     let message = document.querySelector('#question').value;
-    let article = document.querySelector('.chat-body');
+    let article = getArticle();
     showMessageUserOnScreen(message,article);
     let p = await showMessageAiOnScreen(message,article,null);
     handleAiResponse(message,article,p);
@@ -28,6 +29,10 @@ async function handleSubmit(event){
     document.querySelector('#question').value = '';
     event.preventDefault();
     
+}
+
+function handleSuggestionClick(){
+    loadJsonFile('/final_association_rules.json',getPageSuggestion)
 }
 
 function showMessageUserOnScreen(message,article){
@@ -105,7 +110,7 @@ async function showMessageAiOnScreen(message, article, p) {
 
 }
 
-function createLink(link,message,article,p){
+function createLink(link,message,article){
     let a = document.createElement('a');
     a.classList.add('pixel-box','chat-link');
 
@@ -145,4 +150,53 @@ async function saveChatbotData(message,response){
         response: response
     }),
     });
+}
+
+function getPageSuggestion(data){
+    const currentPage = window.location.pathname;
+    let suggestionPages = [];
+    const article = getArticle();
+
+    for (rule of data) {
+        for (antecedent of rule.antecedents) {
+            if (currentPage == antecedent) {
+                for (consequent of rule.consequents) {
+                    if (!suggestionPages.includes(consequent)) {
+                        suggestionPages.push(consequent);
+                    }
+                }
+            }
+        }
+    }
+
+    let p = document.createElement('p');
+    if(suggestionPages.length == 0){
+        p.innerHTML = "Helaas kon er voor deze pagina geen suggestie gegeven worden :/ onze excuses!";
+    } else if (suggestionPages.length == 1){
+        p.innerHTML = "Hieronder vindt je een suggestie op basis van historische data!";
+    } else {
+        p.innerHTML = "Hieronder vindt je een paar suggesties op basis van historische data!";
+    }
+    
+    p.classList.add('pixel-box','system');
+    article.appendChild(p);
+
+    for(suggestion of suggestionPages){
+        let fileName = suggestion.split("/").pop();
+        let cleanName = fileName.replace(".html", "");
+        createLink(suggestion,cleanName,article);
+    }
+
+
+}
+
+function loadJsonFile(jsonFileUrl, callback) {
+    fetch(jsonFileUrl)
+        .then(response => response.json())
+        .then(callback)
+        .catch(error => alert(`Er heeft zich een fout voorgedaan bij het ophalen van '${jsonFileUrl}'`));
+}
+
+function getArticle(){
+    return document.querySelector('.chat-body');
 }

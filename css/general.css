@@ -16,7 +16,7 @@
     font-style: normal;
 }
 
-main, header,
+main,header,
 #menu .submenu:hover ul {
     display: flex;
 }
@@ -28,24 +28,24 @@ code {
     border-radius: 4px;
 }
 
-header, main, nav #menu li a, footer {
+header, main, nav #menu li a, footer, .centered-text {
     text-align: center;
 }
 
 #menu li, header, main, nav, #menu, footer, article, img, .infra-tabel, .backup-stappen, .https-stappen, table,
-article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body {
+article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body,.pixel-box {
     width: 100%;
 }
 
 #menu li a, body, .pixel-button.primary, .spelverloop-lijst p.model-stap,
 tbody tr:hover td, th, h4, code,
-.chat-header h4, .close-btn, .chat-footer input,.feature-card a:hover,.chat-body p,.chat-body a.chat-link {
+.chat-header h4, .close-btn, .chat-footer input,.feature-card a:hover,.chat-body p,.chat-body .chat-link {
     color: var(--color-gold);
 }
 
 body, #menu ul, #menu li, article,
 .chat-window, .chat-body, .chat-footer,
-.chat-footer form, .chat-footer input {
+.chat-footer form, .chat-footer input,main,footer {
     box-sizing: border-box;
 }
 
@@ -57,7 +57,7 @@ header, main {
     flex-direction: column;
 }
 
-header, main, .chat-window, .chat-header, .chat-button {
+header, main, .chat-window, .chat-header, .chat-button, .center-aligned-card {
     align-items: center;
 }
 
@@ -354,7 +354,7 @@ section {
     align-self: flex-end;  
 }
 
-.chat-body a.chat-link {
+.chat-body .chat-link {
     display: block;
     padding: 8px 12px;
     text-align: center;
@@ -364,7 +364,7 @@ section {
     align-self: center;   
 }
 
-.chat-body a.chat-link:hover {
+.chat-body .chat-link:hover {
     background-color: var(--color-bronze);
     color: var(--color-black-deep);
 }

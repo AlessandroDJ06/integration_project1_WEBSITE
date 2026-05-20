@@ -1,2 +1,7 @@
 .env
-chatbotData.json
+chatbotdata.json
+game.json
+navigation_logs.json
+images/demo/
+final_association_rules.json
+page_frequenties.json

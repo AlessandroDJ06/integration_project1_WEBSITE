@@ -13,7 +13,6 @@
 
 .db-galerij .text-card h3 {
     margin-top: 0;
-    color: var(--color-terra);
     border-bottom: 2px solid var(--color-taupe);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
