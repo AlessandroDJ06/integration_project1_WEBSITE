@@ -1,18 +1,6 @@
-const launchBtn = document.getElementById('launch-btn');
-const loadingMsg = document.getElementById('loading-msg');
-const demoContainer = document.getElementById('demo-container');
+document.getElementById('launch-btn').addEventListener('click', function() {
+    document.getElementById('demo-container').classList.remove('demo-hidden');
+    document.getElementById('loading-msg').classList.add('demo-hidden');
 
-launchBtn.addEventListener('click', async () => {
-    launchBtn.disabled = true;
-    launchBtn.textContent = 'LADEN...';
-    loadingMsg.classList.remove('demo-hidden');
-    demoContainer.classList.remove('demo-hidden');
-
-    await cheerpjInit({
-        clipboardMode: "system",
-        scalingFactor: window.devicePixelRatio,
-        displayCanvas: document.getElementById('cheerpjDisplay')
-    });
-
-    await cheerpjRunJar("/demo/zaroc-demo.jar");
+    document.getElementById('jpro-frame').src = "http://10.134.177.16/:8080";
 });

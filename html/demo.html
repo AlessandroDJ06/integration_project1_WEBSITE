@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="../images/zaroc.png">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/demo.css">
-    <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
     <script defer src="../scripts/chatbot.js"></script>
     <script defer src="../scripts/demo.js"></script>
 </head>
@@ -48,7 +47,7 @@
 
 <main>
     <article class="pixel-box">
-        <h2>Speel de Demo</h2>
+        <h2>Zaroc Demo</h2>
         <p>Probeer Zaroc rechtstreeks in je browser! De demo laadt de volledige JavaFX applicatie via CheerpJ.
         </p>
     </article>
@@ -60,22 +59,22 @@
         <p id="loading-msg" class="demo-hidden">De demo wordt geladen, even geduld...</p>
     </section>
 
-    <section id="demo-container" class="demo-hidden">
+    <section id="demo-container" class="demo-hidden flex-container centered-card">
         <h2 class="hidden-title">Demo venster</h2>
-        <canvas id="cheerpjDisplay"></canvas>
+        <iframe id="jpro-frame" class="pixel-box" src="" title="Zaroc Game Demo"></iframe>
     </section>
 
     <section class="flex-container">
         <h2 class="hidden-title">Demo informatie</h2>
         <article class="pixel-box feature-card">
             <h3>Wat kan je doen?</h3>
-            <p>In de demo kan je spelen tegen een AI-tegenstander of lokaal tegen een vriend. Daarnaast zijn alle
+            <p>In de demo kan je spelen tegen een AI-tegenstander. Daarnaast zijn alle
                 thema's en instellingen beschikbaar.</p>
         </article>
         <article class="pixel-box feature-card">
             <h3>Wat is uitgeschakeld?</h3>
-            <p>Inloggen, statistieken, unfinished games en online multiplayer zijn niet beschikbaar zonder account.
-                Daarvoor moet je de game downloaden.</p>
+            <p>Inloggen, statistieken, unfinished games, lokale 2 player en online multiplayer zijn niet beschikbaar zonder account.
+                Daarvoor moet je de game downloaden. <a href="../html/installatiepagina.html" class="pixel-button primary"> HIER </a></p>
         </article>
     </section>
 </main>
