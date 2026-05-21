@@ -100,7 +100,7 @@ function decreasePage(){
 }
 
 function getUpperBound(data,pageLimit){
-    if (data.lenght < (pageLimit) * 50){
+    if (data.lenght > getMinimumBound(data,pageLimit)){
         decreasePage();
         return 0;
     } else {
