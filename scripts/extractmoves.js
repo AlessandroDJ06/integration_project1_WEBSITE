@@ -85,14 +85,14 @@ function sortDataByDate(data,orderAsc){
 
 function increasePage(){
     const currentPageSelector = document.getElementById("current-page");
-    const currentPage = parseInt(currentPageSelector.innerHTML);
+    let currentPage = parseInt(currentPageSelector.innerHTML);
 
     currentPageSelector.innerHTML = currentPage++;
 }
 
 function decreasePage(){
     const currentPageSelector = document.getElementById("current-page");
-    const currentPage = parseInt(currentPageSelector.innerHTML);
+    let currentPage = parseInt(currentPageSelector.innerHTML);
     if(currentPage > 0){
         currentPageSelector.innerHTML = currentPage--;
     }
