@@ -88,6 +88,7 @@ function increasePage(){
     let currentPage = parseInt(currentPageSelector.innerHTML);
 
     currentPageSelector.innerHTML = currentPage++;
+    getMoveData(currentPage);
 }
 
 function decreasePage(){
@@ -100,7 +101,7 @@ function decreasePage(){
 }
 
 function getUpperBound(data,pageLimit){
-    if (data.lenght > getMinimumBound(data,pageLimit)){
+    if (data.length > getMinimumBound(data,pageLimit)){
         decreasePage();
         return 0;
     } else {
@@ -109,7 +110,7 @@ function getUpperBound(data,pageLimit){
 }
 
 function getMinimumBound(data,pageLimit){
-    if (data.lenght < (pageLimit - 1) * 50){
+    if (data.length < (pageLimit - 1) * 50){
         decreasePage();
         return 0;
     } else {
