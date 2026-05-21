@@ -37,6 +37,9 @@ function logCurrentPage(sessionId,page) {
     }).catch(err => console.error('Logging error:', err));
 }
 
+[8.4000 - 96.0000]
+[0.9375 - 8.5655]
+
 function updateAllLinks(sessionId) {
     for(let i of document.querySelectorAll('a')){
         try {

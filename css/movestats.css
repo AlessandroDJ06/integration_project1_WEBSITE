@@ -67,5 +67,19 @@ section > .pixel-box{
     filter: none;
 }
 
+.pixel-button{
+    background-color: var(--color-black-soft);
+    color: var(--color-gold);
+}
+
+.flex-container{
+    justify-content: center;
+}
+
+.page-number{
+    font-size: 1rem;
+    padding: 0%;
+}
+
 
 

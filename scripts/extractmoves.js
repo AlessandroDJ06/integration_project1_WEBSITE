@@ -1,12 +1,14 @@
 window.addEventListener('load',handleInit);
 
 function handleInit(){
-    getMoveData();
+    getMoveData(1);
     document.getElementById("moveDataBtn").addEventListener("click", getMoveData);
+    document.getElementById("increase-page").addEventListener("click",increasePage);
+    document.getElementById("decrease-page").addEventListener("click",decreasePage);
 }
 
 
-function getMoveData() {
+function getMoveData(pageLimit) {
     loadJsonFile('../game.json', function(data) {
         const tableBody = document.getElementById('game-data');
         const sortValue = document.getElementById('sortOrder').value;
@@ -29,7 +31,7 @@ function getMoveData() {
         
         let rows = []; 
         
-        for (let i = 0; i < data.length; i++) {
+        for (let i = getMinimumBound(data,pageLimit); i < getUpperBound(data,pageLimit); i++) {
             let row = data[i];
             
     
@@ -81,6 +83,40 @@ function sortDataByDate(data,orderAsc){
 }
 
 
+function increasePage(){
+    const currentPageSelector = document.getElementById("current-page");
+    const currentPage = parseInt(currentPageSelector.innerHTML);
+
+    currentPageSelector.innerHTML = currentPage++;
+}
+
+function decreasePage(){
+    const currentPageSelector = document.getElementById("current-page");
+    const currentPage = parseInt(currentPageSelector.innerHTML);
+    if(currentPage > 0){
+        currentPageSelector.innerHTML = currentPage--;
+    }
+    getMoveData(currentPage);
+}
+
+function getUpperBound(data,pageLimit){
+    if (data.lenght < (pageLimit) * 50){
+        decreasePage();
+        return 0;
+    } else {
+        return (pageLimit) * 50;
+    }
+}
+
+function getMinimumBound(data,pageLimit){
+    if (data.lenght < (pageLimit - 1) * 50){
+        decreasePage();
+        return 0;
+    } else {
+        return (pageLimit - 1) * 50;
+    }
+    
+}
 // function getDataByUsername(){
 
 // }
