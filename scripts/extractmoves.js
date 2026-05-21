@@ -51,6 +51,11 @@ function getMoveData(pageLimit) {
             
             rows.push(tr);
         }
+
+        if(rows.length === 0){
+            decreasePage();
+            return;
+        }
         tableBody.innerHTML = rows.join('');
     });
 }
@@ -87,36 +92,27 @@ function increasePage(){
     const currentPageSelector = document.getElementById("current-page");
     let currentPage = parseInt(currentPageSelector.innerHTML);
 
-    currentPageSelector.innerHTML = currentPage++;
+    currentPageSelector.innerHTML = ++currentPage;
     getMoveData(currentPage);
 }
 
 function decreasePage(){
     const currentPageSelector = document.getElementById("current-page");
     let currentPage = parseInt(currentPageSelector.innerHTML);
-    if(currentPage > 0){
-        currentPageSelector.innerHTML = currentPage--;
+    if(currentPage > 1){
+        currentPageSelector.innerHTML = --currentPage;
     }
     getMoveData(currentPage);
 }
 
-function getUpperBound(data,pageLimit){
-    if (data.length > getMinimumBound(data,pageLimit)){
-        decreasePage();
-        return 0;
-    } else {
-        return (pageLimit) * 50;
-    }
+function getUpperBound(data, pageLimit){
+    const upper = pageLimit * 25;
+    return upper > data.length ? data.length : upper;
 }
 
-function getMinimumBound(data,pageLimit){
-    if (data.length < (pageLimit - 1) * 50){
-        decreasePage();
-        return 0;
-    } else {
-        return (pageLimit - 1) * 50;
-    }
-    
+function getMinimumBound(data, pageLimit){
+    const lower = (pageLimit - 1) * 25;
+    return lower > data.length ? data.length : lower;
 }
 // function getDataByUsername(){
 

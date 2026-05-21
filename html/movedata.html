@@ -10,6 +10,7 @@
     <script defer src="/scripts/chatbot.js"></script>
     <script defer src="../scripts/extractmoves.js"></script>
     <script defer src="/scripts/pagelogging.js"></script>
+    <script defer src="../scripts/exploration.js"></script>
 </head>
 <body>
     <header>
@@ -50,6 +51,29 @@
     </header>
     <main>
         <article class="pixel-box">
+            <h2>Exploratie</h2>
+            <section class="flex-container">
+                <p>In orange hebben we getracht de correlatie te onderzoeken tussen avg_move_duration en win_percentage.
+                    Uit de data die we hebben onderzocht kunnen we concluderen dat er bij echte spelers geen correlatie is tussen de avg_speed en win win_percentage.
+                    Bij de Ai spelers is dit echter een totaal ander verhaal, daar kunnen we concluderen dat er een sterk positief lineair verband is tussen de 2.
+                    Dit houdt dus in dat een hogere duration ervoor zorgt dat de ai meer wint. Dit is het gevolg van het algoritme dat we gebruiken, hoe hoger het niveau van de Ai
+                    hoe meer itteraties onze ai speler krijgt hoe langer het automatisch duurt maar hierdoor kan hij een betere oplossing bedenken.
+                    Hieronder vindt je de visuele analyse!
+                </p>
+            </section>
+
+            <section id="pictures-analysis">
+                
+            </section>
+
+            <aside class="flex-container">
+                <h3 id="picture-title" class="hidden-title">controls analyse foto's</h3>
+                <button class="pixel-button" id="decrease-picture">&lt;</button>
+                <button class="pixel-button" id="increase-picture">&gt;</button>
+            </aside>
+
+        </article>
+        <article class="pixel-box">
             <h2>Move Data</h2>
             <section class="flex-column-container">
                 <h3 class="hidden-title">sorteercriteria</h3>
@@ -88,7 +112,7 @@
                                 <section class="flex-container">
                                     <h3 class="hidden-title">controls</h3>
                                     <button class="pixel-button" id="decrease-page">&lt;</button>
-                                    <p class="page-number" id="current-page">1</p>
+                                    <p class="" id="current-page">1</p>
                                     <button class="pixel-button" id="increase-page">&gt;</button>
                                 </section>
                             </td>
