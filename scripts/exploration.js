@@ -3,6 +3,7 @@ window.addEventListener('load',handleInit);
 function handleInit(){
     document.getElementById("increase-picture").addEventListener("click",increaseIndex);
     document.getElementById("decrease-picture").addEventListener("click",decreaseIndex);
+    loadJsonFile("../correlations.json",showCurrentCorrelations)
     loadPicture(0);
 }
 
@@ -67,6 +68,43 @@ function getCurrentIndex(){
 function getAmountOfPictures(){
     return getPictures().length;
 }
+
+
+function showCurrentCorrelations(data){
+    const correlationSection = document.getElementById("current-correlations");
+
+    for(let i = 0; i < data.length ; i++){
+        const box = createCorrelationBox(data[i].correlation, data[i].type);
+        correlationSection.appendChild(box);
+    }
+
+}
+
+function createCorrelationBox(correlation,type){
+    let section = document.createElement('section');
+    let title = document.createElement('h3');
+    let text = document.createElement('p');
+    section.classList.add('pixel-box')
+    title.innerHTML = type;
+    text.innerHTML = "correlatie: " + correlation;
+    section.appendChild(title);
+    section.appendChild(text);
+
+    return section;
+}
+
+
+
+
+function loadJsonFile(jsonFileUrl, callback) {
+    fetch(jsonFileUrl)
+        .then(response => response.json())
+        .then(callback)
+        .catch(error => alert(`Er heeft zich een fout voorgedaan bij het ophalen van '${jsonFileUrl}'`));
+}
+
+
+
 
 
 
