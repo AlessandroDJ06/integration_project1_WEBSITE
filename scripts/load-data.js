@@ -12,10 +12,14 @@ function groupAutoValidationData(results) {
         const {category, criteria} = item;
 
         // First level: category
-        acc[category] ??= {};
+        if (!acc[category]) {
+            acc[category] = {};
+        }
 
         // Second level: criteria
-        acc[category][criteria] ??= [];
+        if (!acc[category][criteria]) {
+            acc[category][criteria] = [];
+        }
 
         // Add item
         acc[category][criteria].push(item);

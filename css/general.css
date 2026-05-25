@@ -33,10 +33,10 @@ header, main, nav #menu li a, footer, .centered-text {
 }
 
 #menu li, header, main, nav, #menu, footer, article, img, .infra-tabel, .backup-stappen, .https-stappen, table,
-article > section.pixel-box:nth-child(4) > section.pixel-box h4,.chat-footer form,.chat-footer,.chat-body,.pixel-box {
+article > section.pixel-box:nth-child(4) > section.pixel-box h4, .chat-footer form, .chat-footer, .chat-body, .pixel-box,
+#jpro-frame, #trailer, #trailer video, .marquee-container {
     width: 100%;
 }
-
 #menu li a, body, .pixel-button.primary, .spelverloop-lijst p.model-stap,
 tbody tr:hover td, th, h4, code,
 .chat-header h4, .close-btn, .chat-footer input,.feature-card a:hover,.chat-body p,.chat-body .chat-link {
@@ -49,8 +49,14 @@ body, #menu ul, #menu li, article,
     box-sizing: border-box;
 }
 
-.centered-card, .chat-window,.chat-button {
+.centered-card, .chat-window, .chat-button,
+.themas, .marquee-container,
+.backup-stappen, .https-stappen, .installatie-vereisten {
     justify-content: center;
+}
+.backup-stappen, .https-stappen,
+#diagram-galerij img, img, article > section.pixel-box, article img {
+    max-width: 100%;
 }
 
 header, main {
@@ -69,7 +75,7 @@ body {
     image-rendering: pixelated;
 }
 
-header, main, footer, article,p {
+header, main, footer, article,p, #jpro-frame {
     margin: 0 auto;
 }
 

@@ -1,5 +1,4 @@
 #demo-launch {
-    text-align: center;
     padding: 40px;
 }
 
@@ -29,23 +28,16 @@
     font-size: 0.6rem;
     letter-spacing: 1px;
 }
-
 #demo-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    align-self: stretch;
 }
 
 #jpro-frame {
-    width: 100%;
-    max-width: 1500px;
+    width: min(100%, 1500px);
     height: 800px;
     display: block;
     border: none;
-    background-color: var(--color-black-deep);
-
 }
-
 .demo-hidden {
     display: none !important;
 }

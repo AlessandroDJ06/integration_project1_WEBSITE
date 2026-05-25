@@ -1,18 +1,18 @@
-.installatie-vereisten{
+.installatie-vereisten {
     gap: 50px;
-    justify-content: center;
 }
 
-.vereisten{
+.vereisten {
     text-align: left;
     padding: 10px;
 }
 
 @media (max-width: 900px) {
-    .installatie-vereisten{
+    .installatie-vereisten {
         flex-direction: column;
     }
 }
-.pixel-button{
+
+.pixel-button {
     margin: 20px;
 }

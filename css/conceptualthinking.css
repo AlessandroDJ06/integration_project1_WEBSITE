@@ -3,20 +3,16 @@
     margin-right: auto;
 }
 
-
 #diagram-galerij .pixel-box {
     flex: 1 1 800px;
-
-
 }
 
 #diagram-galerij img {
     height: 150px;
     width: auto;
-    max-width: 100%;
     cursor: pointer;
     box-shadow:
-           -3px  0   0 0 var(--color-gold),
+            -3px  0   0 0 var(--color-gold),
             3px  0   0 0 var(--color-gold),
             0   -3px 0 0 var(--color-gold),
             0    3px 0 0 var(--color-gold);

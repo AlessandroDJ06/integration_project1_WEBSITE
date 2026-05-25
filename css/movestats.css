@@ -5,7 +5,7 @@ table {
 
 thead tr {
     border-bottom: 3px solid var(--color-gold);
-    font-size: 0.6rem ;
+    font-size: 0.6rem;
 }
 
 th {
@@ -13,7 +13,7 @@ th {
     font-size: 0.6rem;
 }
 
-th,td{
+th, td {
     text-align: center;
 }
 
@@ -23,8 +23,7 @@ td {
     color: var(--color-terra);
 }
 
-
-.outlier{
+.outlier {
     background-color: var(--color-black-soft);
 }
 
@@ -39,60 +38,55 @@ td {
     }
 }
 
-button{
+button {
     font-size: 0.1rem;
     margin-bottom: 15px;
 }
 
-select,option,input{
+select, option, input {
     color: var(--color-gold);
     font-family: "PressStart2P", monospace;
     font-size: 0.8em;
 }
 
-
-select,input{
+select, input {
     max-height: max-content;
     width: 100%;
     max-width: 40%;
 }
 
-.flex-column-container{
+.flex-column-container {
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-section > .pixel-box{
+section > .pixel-box {
     filter: none;
 }
 
-.pixel-button{
+.pixel-button {
     background-color: var(--color-black-soft);
     color: var(--color-gold);
 }
 
-.flex-container{
+.flex-container {
     justify-content: center;
 }
 
-.page-number{
+.page-number {
     font-size: 1rem;
     padding: 0%;
 }
 
 img {
     max-height: 70vh;
-    max-width: 100%;
     height: auto;
     width: auto;
 }
 
-#current-correlations > .pixel-box{
+#current-correlations > .pixel-box {
     max-width: 30%;
     width: 100%;
     flex: 1 1;
 }
-
-
-
