@@ -17,3 +17,20 @@
             0   -3px 0 0 var(--color-gold),
             0    3px 0 0 var(--color-gold);
 }
+#preview-container {
+    margin-bottom: 2rem;
+}
+
+
+#preview-image {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+    object-fit: contain;
+}
+#preview-text {
+     margin: 10px auto;
+     max-width: 600px;
+     line-height: 1.4;
+ }
