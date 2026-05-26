@@ -26,6 +26,8 @@ code {
     background-color: #563226;
     padding: 2px 5px;
     border-radius: 4px;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 header, main, nav #menu li a, footer, .centered-text {
@@ -69,7 +71,6 @@ header, main, .chat-window, .chat-header, .chat-button, .center-aligned-card {
 
 body {
     background-color: var(--color-black-soft);
-    margin: 0;
     padding: 40px 20px;
     min-height: 100vh;
     image-rendering: pixelated;
@@ -77,6 +78,9 @@ body {
 
 header, main, footer, article,p, #jpro-frame {
     margin: 0 auto;
+}
+body, #menu ul, .chat-body p, #current-correlations > .pixel-box p, .check-list {
+    margin: 0;
 }
 
 header, main {
@@ -141,7 +145,6 @@ nav {
 #menu ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
@@ -347,7 +350,6 @@ section {
     max-width: 75%;
     font-size: 0.55rem;
     padding: 8px 12px;
-    margin: 0;            
 }
 
 .chat-body p.system {
