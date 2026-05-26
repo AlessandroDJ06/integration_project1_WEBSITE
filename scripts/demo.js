@@ -11,6 +11,7 @@ function initDemo() {
 
             document.getElementById('jpro-frame').src = "/demo/";
             if(gameAudio){
+                gameAudio.volume = 0.1;
                 gameAudio.play();
             }
         });
