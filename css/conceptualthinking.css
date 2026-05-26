@@ -5,11 +5,13 @@
 
 #diagram-galerij .pixel-box {
     flex: 1 1 800px;
+    max-width: 100%;
 }
 
 #diagram-galerij img {
     height: 150px;
     width: auto;
+    margin-top: 20px;
     cursor: pointer;
     box-shadow:
             -3px  0   0 0 var(--color-gold),
@@ -21,7 +23,6 @@
     margin-bottom: 2rem;
 }
 
-
 #preview-image {
     max-width: 100%;
     width: auto;
@@ -30,7 +31,7 @@
     object-fit: contain;
 }
 #preview-text {
-     margin: 10px auto;
-     max-width: 600px;
-     line-height: 1.4;
- }
+    margin: 10px auto;
+    max-width: 600px;
+    line-height: 1.4;
+}
