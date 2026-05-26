@@ -90,3 +90,7 @@ img {
     width: 100%;
     flex: 1 1;
 }
+#current-correlations > .pixel-box p {
+    word-break: break-all;
+    margin: 0;
+}
