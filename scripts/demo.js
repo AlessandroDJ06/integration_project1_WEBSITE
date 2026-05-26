@@ -2,6 +2,7 @@ window.addEventListener('load', initDemo);
 
 function initDemo() {
     const launchBtn = document.getElementById('launch-btn');
+    const gameAudio = document.getElementById('game-audio');
 
     if (launchBtn) {
         launchBtn.addEventListener('click', function() {
@@ -9,6 +10,9 @@ function initDemo() {
             document.getElementById('loading-msg').classList.add('demo-hidden');
 
             document.getElementById('jpro-frame').src = "/demo/";
+            if(gameAudio){
+                gameAudio.play();
+            }
         });
     }
 }
