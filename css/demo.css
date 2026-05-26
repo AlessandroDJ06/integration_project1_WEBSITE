@@ -1,5 +1,6 @@
 #demo-launch {
     padding: 40px;
+    box-sizing: border-box;
 }
 
 #demo-launch h2 {
@@ -34,10 +35,14 @@
 
 #jpro-frame {
     width: min(100%, 1500px);
-    height: 800px;
+    aspect-ratio: 16 / 9;
+    max-height: 85vh;
     display: block;
     border: none;
 }
 .demo-hidden {
     display: none !important;
+}
+article.pixel-box{
+    max-width: 100%;
 }
